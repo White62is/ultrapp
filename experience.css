@@ -78,3 +78,115 @@ button{font:inherit;cursor:pointer;color:inherit}button:focus-visible{outline:3p
   animation-play-state: running !important;
 }
 
+/* ==========================================================================
+   SEÇÃO DE PERGUNTAS FREQUENTES (FAQ) & ACORDEÃO
+   ========================================================================== */
+
+.faq-section {
+  padding-block: 40px 85px;
+}
+
+.faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border: 1px solid #302a3a;
+  border-radius: 12px;
+  background: linear-gradient(150deg, #15111c, #100e14 55%);
+  overflow: hidden;
+  transition: border-color 0.28s ease, box-shadow 0.28s ease, background 0.28s ease;
+}
+
+.faq-item:hover {
+  border-color: #7838b0;
+}
+
+.faq-item[open] {
+  border-color: #a855f7;
+  box-shadow: 0 4px 30px rgba(168, 85, 247, 0.14);
+  background: linear-gradient(150deg, #1d122b, #110d18 60%);
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 22px 26px;
+  cursor: pointer;
+  list-style: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: #f1ecf7;
+  user-select: none;
+}
+
+.faq-question::-webkit-details-marker {
+  display: none;
+}
+
+.faq-question:focus-visible {
+  outline: 2px solid #a855f7;
+  outline-offset: -2px;
+}
+
+.faq-icon {
+  width: 20px;
+  height: 20px;
+  stroke: #b884e5;
+  stroke-width: 2.2;
+  fill: none;
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), stroke 0.25s ease;
+}
+
+.faq-item[open] .faq-icon {
+  transform: rotate(180deg);
+  stroke: #e9d5ff;
+}
+
+.faq-answer {
+  padding: 0 26px 22px;
+  color: #c0b4d0;
+  font-size: 14.5px;
+  line-height: 1.75;
+  border-top: 1px solid #292033;
+  margin-top: 2px;
+  padding-top: 16px;
+  animation: faq-fade-in 0.25s ease-out;
+}
+
+.faq-answer p {
+  margin: 0;
+}
+
+@keyframes faq-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 680px) {
+  .faq-section {
+    padding-block: 30px 60px;
+  }
+  .faq-question {
+    padding: 18px 20px;
+    font-size: 15px;
+  }
+  .faq-answer {
+    padding: 0 20px 18px;
+    font-size: 14px;
+  }
+}
+

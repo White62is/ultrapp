@@ -103,4 +103,16 @@
   const updateScroll=()=>{const range=document.documentElement.scrollHeight-innerHeight;progress.style.transform='scaleX('+(range>0?scrollY/range:0)+')';document.querySelector('.site-header').classList.toggle('header-scrolled',scrollY>60);scrollScheduled=false;};
   addEventListener('scroll',()=>{if(!scrollScheduled){scrollScheduled=true;requestAnimationFrame(updateScroll);}},{passive:true});
   updateScroll();
+
+  document.querySelectorAll('[data-faq-group] details').forEach(detail => {
+    detail.addEventListener('toggle', () => {
+      if (detail.open) {
+        document.querySelectorAll('[data-faq-group] details').forEach(other => {
+          if (other !== detail && other.open) {
+            other.removeAttribute('open');
+          }
+        });
+      }
+    });
+  });
 })();

@@ -32,19 +32,43 @@
   const tryAutoOffer = () => {if(offerReady&&!safeRead('ultraplay-trial-offer-v2')&&document.visibilityState==='visible')openTrial();};
   if (!safeRead('ultraplay-trial-offer-v2')) offerTimer=setTimeout(()=>{offerReady=true;tryAutoOffer();},5500);
   document.addEventListener('visibilitychange',tryAutoOffer);
-  const savedMotion = safeRead('ultraplay-motion-paused-v3');
-  let paused = savedMotion === 'true';
-  const motionButtons = [...document.querySelectorAll('[data-motion-control]')];
-  function updateMotion(){document.body.classList.toggle('motion-paused',paused);document.body.classList.toggle('motion-enabled',!paused);motionButtons.forEach(button=>{button.setAttribute('aria-pressed',String(paused));button.innerHTML=paused?'<span aria-hidden="true">▶</span> Ativar animações':'<span aria-hidden="true">Ⅱ</span> Pausar animações';});}
-  updateMotion();
-  motionButtons.forEach(button=>button.addEventListener('click',()=>{paused=!paused;safeWrite('ultraplay-motion-paused-v3',String(paused));updateMotion();}));
+  const paused = false;
+  document.body.classList.add('motion-enabled');
   if ('IntersectionObserver' in window) {
     document.body.classList.add('js-motion');
-    const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}}),{threshold:.08,rootMargin:'0px 0px 30px 0px'});
-    document.querySelectorAll('.reveal').forEach(element=>observer.observe(element));
-    const count=document.querySelector('[data-count]');
-    const counter=new IntersectionObserver(entries=>{if(!entries.some(e=>e.isIntersecting))return;counter.disconnect();const target=Number(count.dataset.count);const started=performance.now();function tick(time){const progress=Math.min((time-started)/1300,1);count.textContent=String(Math.round(target*(1-Math.pow(1-progress,3))));if(progress<1&&!paused)requestAnimationFrame(tick);else count.textContent=String(target);}requestAnimationFrame(tick);},{threshold:.5});
-    counter.observe(count);
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          entry.target.classList.add('is-revealed');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -30px 0px'
+    });
+
+    document.querySelectorAll('.reveal, .benefit, .category-card').forEach(element => {
+      observer.observe(element);
+    });
+    const count = document.querySelector('[data-count]');
+    if (count) {
+      const counter = new IntersectionObserver(entries => {
+        if (!entries.some(e => e.isIntersecting)) return;
+        counter.disconnect();
+        const target = Number(count.dataset.count);
+        const started = performance.now();
+        function tick(time) {
+          const progress = Math.min((time - started) / 1300, 1);
+          count.textContent = String(Math.round(target * (1 - Math.pow(1 - progress, 3))));
+          if (progress < 1 && !paused) requestAnimationFrame(tick);
+          else count.textContent = String(target);
+        }
+        requestAnimationFrame(tick);
+      }, { threshold: 0.5 });
+      counter.observe(count);
+    }
   }
   const tabs=[...document.querySelectorAll('[data-device]')];
   const panel=document.querySelector('#device-panel');
@@ -65,7 +89,7 @@
   }
   tabs.forEach((tab,index)=>{tab.addEventListener('click',()=>{deviceAuto=false;panel.parentElement.classList.add('manual-device');selectDevice(index);});tab.addEventListener('keydown',event=>{let next=index;if(event.key==='ArrowRight')next=(index+1)%tabs.length;else if(event.key==='ArrowLeft')next=(index-1+tabs.length)%tabs.length;else if(event.key==='Home')next=0;else if(event.key==='End')next=tabs.length-1;else return;event.preventDefault();deviceAuto=false;panel.parentElement.classList.add('manual-device');selectDevice(next,true);});});
   const isOnScreen=element=>{const r=element.getBoundingClientRect();return r.bottom>0&&r.top<innerHeight;};
-  setInterval(()=>{if(!paused&&deviceAuto&&!dialog.open&&document.visibilityState==='visible'&&isOnScreen(panel)&&!panel.parentElement.matches(':hover')&&!panel.parentElement.contains(document.activeElement))selectDevice((currentDevice+1)%devices.length);},6500);
+  setInterval(()=>{if(!paused&&deviceAuto&&!dialog.open&&document.visibilityState==='visible'&&isOnScreen(panel)&&!panel.parentElement.contains(document.activeElement))selectDevice((currentDevice+1)%devices.length);},6500);
   const categoryWords=['FILMES','SÉRIES','ESPORTES','ANIMES','TV AO VIVO'];
   const categoryText=document.querySelector('#hero-category');
   let categoryIndex=0;

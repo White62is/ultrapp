@@ -1,0 +1,6 @@
+{
+  "name": "UltraPlay",
+  "description": "Experimente a UltraPlay grátis por 3 horas. Filmes, séries, animes e TV ao vivo. Planos flexíveis e suporte via WhatsApp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

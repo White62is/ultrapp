@@ -824,7 +824,6 @@ import 'aos/dist/aos.css';
     setupTheme();
     setupScrollSpy();
     setupCatalogFilterAndSearch();
-    setupPreviewModal();
     setupPlanSwitcher();
     setupWhatsAppToast();
   };

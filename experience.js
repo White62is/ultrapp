@@ -262,4 +262,135 @@ import 'aos/dist/aos.css';
       setTimeout(() => AOS.refresh(), 300);
     });
   });
+
+  // =========================================================================
+  // SELETOR INTERATIVO DE DURAÇÃO DOS PLANOS E CÁLCULO DE ECONOMIA REAL
+  // =========================================================================
+  const durationTabs = document.querySelectorAll('.duration-tab');
+  const planCards = document.querySelectorAll('.plan-card');
+  const savingsBannerTitle = document.querySelector('#savings-banner-title');
+  const savingsBannerDesc = document.querySelector('#savings-banner-desc');
+  const savingsBannerPill = document.querySelector('#savings-banner-pill');
+
+  const plansData = {
+    mensal: {
+      name: 'Mensal',
+      months: 1,
+      total: 30,
+      monthly: '30,00',
+      savings: 0,
+      desc: 'Acesso completo por 30 dias com total liberdade para renovar ou pausar quando quiser.',
+      pill: 'Sem fidelidade'
+    },
+    trimestral: {
+      name: 'Trimestral',
+      months: 3,
+      total: 80,
+      monthly: '26,66',
+      savings: 10,
+      desc: 'Equivalente a apenas <strong>R$ 26,66/mês</strong>. Você economiza <strong>R$ 10,00 reais</strong> comparado ao plano mensal!',
+      pill: 'Economia Real de R$ 10,00'
+    },
+    semestral: {
+      name: 'Semestral',
+      months: 6,
+      total: 150,
+      monthly: '25,00',
+      savings: 30,
+      desc: 'Equivalente a apenas <strong>R$ 25,00/mês</strong>. Você economiza <strong>R$ 30,00 reais</strong> (equivale a 1 mês inteiro grátis)!',
+      pill: 'Economia Real de R$ 30,00 (1 Mês Grátis)'
+    },
+    anual: {
+      name: 'Anual',
+      months: 12,
+      total: 280,
+      monthly: '23,33',
+      savings: 80,
+      desc: 'Equivalente a apenas <strong>R$ 23,33/mês</strong>. <strong>Economia máxima de R$ 80,00 reais</strong> (quase 3 meses de graça)!',
+      pill: 'Economia Máxima de R$ 80,00 (22% OFF)'
+    }
+  };
+
+  function selectPlanPeriod(period, shouldScroll = false) {
+    const data = plansData[period];
+    if (!data) return;
+
+    // Atualizar abas do seletor
+    durationTabs.forEach(tab => {
+      const isCurrent = tab.dataset.period === period;
+      tab.classList.toggle('active', isCurrent);
+      tab.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
+    });
+
+    // Atualizar cards de planos
+    planCards.forEach(card => {
+      const isCurrent = card.dataset.period === period;
+      card.classList.toggle('is-selected', isCurrent);
+
+      const savingBadge = card.querySelector('[data-saving-tag]');
+      if (savingBadge) {
+        if (isCurrent && data.savings > 0) {
+          savingBadge.classList.add('highlight-pulse');
+        } else {
+          savingBadge.classList.remove('highlight-pulse');
+        }
+      }
+
+      // Efeito sutil de feedback visual no preço do card ativo
+      if (isCurrent) {
+        const priceVal = card.querySelector('.price-val');
+        if (priceVal) {
+          priceVal.style.transition = 'transform 0.22s ease';
+          priceVal.style.transform = 'scale(1.08)';
+          setTimeout(() => {
+            priceVal.style.transform = 'scale(1)';
+          }, 220);
+        }
+      }
+    });
+
+    // Atualizar banner de destaque da economia real
+    if (savingsBannerTitle) {
+      savingsBannerTitle.textContent = `Plano ${data.name} Selecionado: R$ ${data.total},00 total`;
+    }
+    if (savingsBannerDesc) {
+      savingsBannerDesc.innerHTML = data.desc;
+    }
+    if (savingsBannerPill) {
+      savingsBannerPill.textContent = data.pill;
+    }
+
+    // Rolagem suave opcional no mobile caso o card esteja fora da visão
+    if (shouldScroll && window.innerWidth < 768) {
+      const selectedCard = document.querySelector(`.plan-card[data-period="${period}"]`);
+      if (selectedCard) {
+        selectedCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+  }
+
+  // Eventos de clique nas abas de duração
+  durationTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const period = tab.dataset.period;
+      if (period) selectPlanPeriod(period, true);
+    });
+  });
+
+  // Eventos de clique nos cards de planos para sincronização bidirecional
+  planCards.forEach(card => {
+    card.addEventListener('click', event => {
+      if (event.target.closest('.plan-button')) return;
+      const period = card.dataset.period;
+      if (period) selectPlanPeriod(period, false);
+    });
+
+    card.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        const period = card.dataset.period;
+        if (period) selectPlanPeriod(period, false);
+      }
+    });
+  });
 })();

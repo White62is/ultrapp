@@ -1575,6 +1575,58 @@ h2 span {
   color: var(--text-muted);
 }
 
+/* Indicador de progresso de ativação visual para botões do WhatsApp */
+.wa-activating {
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%) !important;
+  border-color: #34d399 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 26px rgba(16, 185, 129, 0.6), 0 4px 15px rgba(0, 0, 0, 0.4) !important;
+  transform: scale(0.98) !important;
+  transition: all 0.25s ease !important;
+  cursor: wait;
+}
+
+.wa-activating span {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+}
+
+.wa-activating-spinner {
+  width: 15px;
+  height: 15px;
+  border: 2.2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: wa-spin 0.65s linear infinite;
+  display: inline-block;
+  flex-shrink: 0;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.wa-activating-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 6px;
+  animation: wa-pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.wa-activating-check svg {
+  width: 16px;
+  height: 16px;
+  stroke: #ffffff;
+}
+
+@keyframes wa-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes wa-pop {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
 /* ==========================================================================
    RODAPÉ
    ========================================================================== */
@@ -1961,7 +2013,35 @@ h2 span {
 
   .plans-grid {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 18px;
+  }
+
+  .plan-card {
+    padding: 24px 20px;
+  }
+
+  .plan-brand-row {
+    gap: 12px;
+  }
+
+  .plan-cat-logo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .plan-title {
+    font-size: 22px;
+  }
+
+  .plan-features {
+    padding-top: 14px;
+    margin-bottom: 20px;
+    gap: 10px;
+  }
+
+  .plan-features li {
+    font-size: 12.5px;
+    gap: 8px;
   }
 
   .contact-panel {
@@ -1999,3 +2079,28 @@ h2 span {
     display: none;
   }
 }
+
+@media (max-width: 480px) {
+  .plans-grid {
+    gap: 14px;
+  }
+
+  .plan-card {
+    padding: 20px 16px;
+  }
+
+  .plan-title {
+    font-size: 20px;
+  }
+
+  .price-val {
+    font-size: 44px;
+  }
+
+  .featured-ribbon {
+    font-size: 10px;
+    padding: 4px 10px;
+    top: -12px;
+  }
+}
+

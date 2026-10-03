@@ -322,4 +322,105 @@ import 'aos/dist/aos.css';
       setTimeout(() => AOS.refresh(), 300);
     });
   });
+
+  // =========================================================================
+  // INDICADOR VISUAL DE PROGRESSO DE ATIVAÇÃO NOS BOTÕES DO WHATSAPP
+  // =========================================================================
+  const setupWhatsAppProgress = () => {
+    const waButtons = document.querySelectorAll('a[href*="wa.me"]');
+
+    waButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Evitar sobreposição de cliques repetidos durante ativação em andamento
+        if (btn.classList.contains('wa-activating')) return;
+
+        const originalContent = btn.innerHTML;
+        btn.classList.add('wa-activating');
+
+        // Fase 1: Feedback imediato com spinner e texto de ativação
+        btn.innerHTML = `
+          <span class="wa-activating-spinner" aria-hidden="true"></span>
+          <span>Iniciando ativação...</span>
+        `;
+
+        // Fase 2: Confirmação de redirecionamento para o WhatsApp
+        setTimeout(() => {
+          if (btn.classList.contains('wa-activating')) {
+            btn.innerHTML = `
+              <span class="wa-activating-check" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+              <span>Abrindo WhatsApp...</span>
+            `;
+          }
+        }, 650);
+
+        // Fase 3: Restauração suave do estado original
+        setTimeout(() => {
+          btn.classList.remove('wa-activating');
+          btn.innerHTML = originalContent;
+        }, 2600);
+      });
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupWhatsAppProgress);
+  } else {
+    setupWhatsAppProgress();
+  }
+
+  // =========================================================================
+  // CARREGAMENTO PREGUIÇOSO AGRESSIVO E OTIMIZAÇÃO DE PERFORMANCE MOBILE
+  // =========================================================================
+  const setupAggressiveLazyLoading = () => {
+    // 1. Pausar animações pesadas de Marquee quando fora da tela no mobile para poupar GPU/CPU e bateria
+    if ('IntersectionObserver' in window) {
+      const marqueeObserver = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            const track = entry.target.querySelector('.marquee-track');
+            if (track) {
+              track.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
+            }
+          });
+        },
+        { rootMargin: '160px 0px' }
+      );
+
+      document.querySelectorAll('.marquee').forEach(el => marqueeObserver.observe(el));
+
+      // 2. Observer de carregamento progressivo para imagens abaixo da dobra
+      const heavyMediaObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              if (img.dataset.src) {
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+              }
+              if (img.decode) {
+                img.decode().catch(() => {});
+              }
+              observer.unobserve(img);
+            }
+          });
+        },
+        { rootMargin: '240px 0px' }
+      );
+
+      document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+        heavyMediaObserver.observe(img);
+      });
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupAggressiveLazyLoading);
+  } else {
+    setupAggressiveLazyLoading();
+  }
 })();

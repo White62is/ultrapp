@@ -20,13 +20,13 @@ import 'aos/dist/aos.css';
     });
   });
 
-  // Inicialização do AOS com curvas suaves
+  // Inicialização global da biblioteca AOS com foco em performance e impacto visual
   AOS.init({
-    duration: 650,
+    duration: 800,
     easing: 'ease-out-cubic',
     once: true,
-    offset: 40,
-    delay: 40,
+    offset: 50,
+    delay: 0,
     disable: () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
   });
 

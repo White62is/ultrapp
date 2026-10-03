@@ -1,5 +1,34 @@
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 (() => {
   'use strict';
+
+  // Configurar elementos .reveal com atributos do AOS para animações elegantes
+  document.querySelectorAll('.reveal').forEach(el => {
+    if (!el.hasAttribute('data-aos')) {
+      el.setAttribute('data-aos', 'fade-up');
+    }
+  });
+
+  // Escalonamento em cascata nos grids de benefícios, categorias, passos e planos
+  document.querySelectorAll('.benefits-grid, .category-grid, .steps-grid, .plans-grid').forEach(grid => {
+    grid.querySelectorAll('.reveal').forEach((item, idx) => {
+      if (!item.hasAttribute('data-aos-delay')) {
+        item.setAttribute('data-aos-delay', String(Math.min((idx % 4) * 90, 360)));
+      }
+    });
+  });
+
+  // Inicialização do AOS com curvas suaves
+  AOS.init({
+    duration: 650,
+    easing: 'ease-out-cubic',
+    once: true,
+    offset: 40,
+    delay: 40,
+    disable: () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  });
 
   // Configuração dos dispositivos suportados
   const devices = [
@@ -230,6 +259,7 @@
           }
         });
       }
+      setTimeout(() => AOS.refresh(), 300);
     });
   });
 })();

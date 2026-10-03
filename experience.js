@@ -90,24 +90,126 @@ import 'aos/dist/aos.css';
     setupCatalogLoading();
   }
 
-  // Configuração dos dispositivos suportados
-  const devices = [
-    { name: 'Smart TV', file: 'assets/devices-0.jpg' },
-    { name: 'TV Box', file: 'assets/devices-1.jpeg' },
-    { name: 'Fire Stick', file: 'assets/devices-2.jpeg' },
-    { name: 'Mi Stick', file: 'assets/devices-3.jpeg' },
-    { name: 'Notebook', file: 'assets/devices-4.jpeg' },
-    { name: 'Celular', file: 'assets/devices-5.jpeg' }
+  // Gerenciamento do Menu Lateral Mobile (Drawer)
+  const menuToggle = document.querySelector('#menu-toggle');
+  const mobileDrawer = document.querySelector('#mobile-drawer');
+  const drawerOverlay = document.querySelector('#drawer-overlay');
+  const drawerClose = document.querySelector('#drawer-close');
+  const drawerLinks = document.querySelectorAll('.drawer-link, .drawer-btn, .drawer-wa-btn');
+
+  const openDrawer = () => {
+    if (!mobileDrawer || !drawerOverlay) return;
+    menuToggle?.classList.add('is-active');
+    menuToggle?.setAttribute('aria-expanded', 'true');
+    mobileDrawer.classList.add('is-open');
+    mobileDrawer.setAttribute('aria-hidden', 'false');
+    drawerOverlay.classList.add('is-open');
+    drawerOverlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('drawer-open');
+  };
+
+  const closeDrawer = () => {
+    if (!mobileDrawer || !drawerOverlay) return;
+    menuToggle?.classList.remove('is-active');
+    menuToggle?.setAttribute('aria-expanded', 'false');
+    mobileDrawer.classList.remove('is-open');
+    mobileDrawer.setAttribute('aria-hidden', 'true');
+    drawerOverlay.classList.remove('is-open');
+    drawerOverlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('drawer-open');
+  };
+
+  menuToggle?.addEventListener('click', () => {
+    if (mobileDrawer?.classList.contains('is-open')) closeDrawer();
+    else openDrawer();
+  });
+
+  drawerClose?.addEventListener('click', closeDrawer);
+  drawerOverlay?.addEventListener('click', closeDrawer);
+  drawerLinks.forEach(link => link.addEventListener('click', closeDrawer));
+
+  // Configuração dos 6 dispositivos suportados com orientações personalizadas
+  const deviceData = [
+    {
+      name: 'Smart TV',
+      file: 'assets/devices-0.jpg',
+      description: 'Sua sala pode ser o melhor lugar para dar play. Informe o modelo da sua Smart TV e receba as orientações para configurar o aplicativo.',
+      waMessage: 'Olá! Gostaria de testar a UltraPlay na minha Smart TV.'
+    },
+    {
+      name: 'TV Box',
+      file: 'assets/devices-1.jpeg',
+      description: 'Conecte sua TV Box à internet e leve a experiência UltraPlay para a televisão. Nossa equipe orienta a configuração para o seu modelo.',
+      waMessage: 'Olá! Gostaria de testar a UltraPlay na minha TV Box.'
+    },
+    {
+      name: 'Fire TV Stick',
+      file: 'assets/devices-2.jpeg',
+      description: 'Use seu Fire TV Stick para explorar a UltraPlay com máxima performance. Fale com a equipe para receber as orientações de instalação e acesso.',
+      waMessage: 'Olá! Gostaria de testar a UltraPlay no meu Fire TV Stick.'
+    },
+    {
+      name: 'Xiaomi Mi Stick',
+      file: 'assets/devices-3.jpeg',
+      description: 'Seu Mi Stick também pode fazer parte da experiência. Informe o modelo no WhatsApp para receber as instruções do aplicativo.',
+      waMessage: 'Olá! Gostaria de testar a UltraPlay no meu Xiaomi Mi Stick.'
+    },
+    {
+      name: 'Notebook',
+      file: 'assets/devices-4.jpeg',
+      description: 'Aproveite todo o conteúdo na tela do seu computador ou notebook. Peça à equipe as orientações de acesso direto no navegador ou app.',
+      waMessage: 'Olá! Gostaria de testar a UltraPlay no meu Notebook.'
+    },
+    {
+      name: 'Celular',
+      file: 'assets/devices-5.jpeg',
+      description: 'Leve seu próximo play no bolso. Informe se seu celular é Android ou iPhone para receber as orientações de acesso.',
+      waMessage: 'Olá! Gostaria de testar a UltraPlay no meu Celular.'
+    }
   ];
 
-  const descriptions = [
-    'Sua sala pode ser o melhor lugar para dar play. Informe o modelo da sua Smart TV e receba as orientações para configurar o aplicativo.',
-    'Conecte sua TV Box à internet e leve a experiência UltraPlay para a televisão. Nossa equipe orienta a configuração para o seu modelo.',
-    'Use seu Fire TV Stick para explorar a UltraPlay na TV. Fale com a equipe para receber as orientações de instalação e acesso.',
-    'Seu Mi Stick também pode fazer parte da experiência. Informe o modelo no WhatsApp para receber as instruções do aplicativo.',
-    'Aproveite todo o conteúdo na tela do seu computador ou notebook. Peça à equipe as orientações de acesso direto no navegador ou app.',
-    'Leve seu próximo play no bolso. Informe se seu celular é Android ou iPhone para receber as orientações de acesso.'
-  ];
+  // Gerenciamento do Modal de Informações Específicas do Dispositivo
+  const deviceDialog = document.querySelector('#device-dialog');
+  const deviceDialogClose = document.querySelector('#device-dialog-close');
+  const deviceDialogCancel = document.querySelector('#device-dialog-cancel');
+  const deviceDialogImg = document.querySelector('#device-dialog-img');
+  const deviceDialogTitle = document.querySelector('#device-dialog-title');
+  const deviceDialogDesc = document.querySelector('#device-dialog-desc');
+  const deviceDialogBtn = document.querySelector('#device-dialog-btn');
+
+  function openDeviceModal(index) {
+    if (!deviceDialog || !deviceData[index]) return;
+    const item = deviceData[index];
+    if (deviceDialogImg) {
+      deviceDialogImg.src = item.file;
+      deviceDialogImg.alt = item.name;
+    }
+    if (deviceDialogTitle) deviceDialogTitle.textContent = item.name;
+    if (deviceDialogDesc) deviceDialogDesc.textContent = item.description;
+    if (deviceDialogBtn) {
+      deviceDialogBtn.href = `https://wa.me/558781584372?text=${encodeURIComponent(item.waMessage)}`;
+    }
+    deviceDialog.showModal();
+    document.body.classList.add('modal-open');
+  }
+
+  document.querySelectorAll('[data-open-device]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const index = Number(btn.dataset.openDevice) || 0;
+      openDeviceModal(index);
+    });
+  });
+
+  deviceDialogClose?.addEventListener('click', () => deviceDialog?.close());
+  deviceDialogCancel?.addEventListener('click', () => deviceDialog?.close());
+  if (deviceDialog) {
+    deviceDialog.addEventListener('click', event => {
+      if (event.target === deviceDialog) deviceDialog.close();
+    });
+    deviceDialog.addEventListener('close', () => {
+      document.body.classList.remove('modal-open');
+    });
+  }
 
   // Gerenciamento do Modal de Teste Grátis
   const dialog = document.querySelector('#trial-dialog');
@@ -200,85 +302,6 @@ import 'aos/dist/aos.css';
       counterObs.observe(countEl);
     }
   }
-
-  // Alternador Interativo de Dispositivos
-  const tabs = document.querySelectorAll('.device-tabs button');
-  const panel = document.querySelector('#device-panel');
-  let currentDevice = 0;
-  let deviceAuto = true;
-
-  function selectDevice(index, focus = false) {
-    if (!panel || !tabs.length) return;
-    currentDevice = index;
-
-    tabs.forEach((tab, i) => {
-      const isSelected = i === index;
-      tab.setAttribute('aria-selected', isSelected ? 'true' : 'false');
-      tab.tabIndex = isSelected ? 0 : -1;
-    });
-
-    const device = devices[index];
-    const photo = document.querySelector('#device-image');
-    const nameEl = document.querySelector('#device-name');
-    const descEl = document.querySelector('#device-description');
-    const linkEl = document.querySelector('#device-link');
-
-    if (photo && device) {
-      photo.src = device.file;
-      photo.alt = device.name;
-    }
-    if (nameEl && device) nameEl.textContent = device.name;
-    if (descEl) descEl.textContent = descriptions[index];
-    if (linkEl && device) {
-      linkEl.href = `https://wa.me/558781584372?text=ol%C3%A1%20tenho%20interesse%20no%20teste%20gr%C3%A1tis%20para%20${encodeURIComponent(device.name)}`;
-    }
-
-    panel.classList.remove('changed');
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => panel.classList.add('changed'));
-    });
-
-    if (focus && tabs[index]) tabs[index].focus();
-  }
-
-  tabs.forEach((tab, index) => {
-    tab.addEventListener('click', () => {
-      deviceAuto = false;
-      selectDevice(index);
-    });
-
-    tab.addEventListener('keydown', event => {
-      let next = index;
-      if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
-      else if (event.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
-      else if (event.key === 'Home') next = 0;
-      else if (event.key === 'End') next = tabs.length - 1;
-      else return;
-
-      event.preventDefault();
-      deviceAuto = false;
-      selectDevice(next, true);
-    });
-  });
-
-  // Ciclo automático suave de dispositivos caso visível na tela
-  const isElementInView = el => {
-    if (!el) return false;
-    const r = el.getBoundingClientRect();
-    return r.bottom > 0 && r.top < window.innerHeight;
-  };
-
-  setInterval(() => {
-    if (
-      deviceAuto &&
-      document.visibilityState === 'visible' &&
-      panel &&
-      isElementInView(panel) &&
-      !panel.parentElement?.contains(document.activeElement)
-    ) {
-      selectDevice((currentDevice + 1) % devices.length);
-    }
-  }, 6500);
 
   // Barra de progresso de leitura e cabeçalho fixo
   let scrollScheduled = false;

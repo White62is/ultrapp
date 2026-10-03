@@ -295,6 +295,155 @@ svg {
   transform: translateY(-1px);
 }
 
+/* Botão Hambúrguer Mobile */
+.mobile-menu-toggle {
+  display: none;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  width: 40px;
+  height: 40px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.mobile-menu-toggle:hover {
+  background: rgba(168, 85, 247, 0.15);
+  border-color: var(--purple-light);
+}
+
+.hamburger-bar {
+  width: 20px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.mobile-menu-toggle.is-active .hamburger-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-menu-toggle.is-active .hamburger-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-toggle.is-active .hamburger-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Menu Lateral Mobile (Drawer) */
+.mobile-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mobile-drawer-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(320px, 86vw);
+  background: #0d0915;
+  border-left: 1px solid rgba(168, 85, 247, 0.25);
+  z-index: 100;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 20px;
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.85);
+}
+
+.mobile-drawer.is-open {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-light);
+  margin-bottom: 24px;
+}
+
+.drawer-close {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-light);
+  color: #ffffff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 16px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.drawer-close:hover {
+  background: rgba(168, 85, 247, 0.2);
+  transform: rotate(90deg);
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.drawer-link {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ded9e7;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  transition: background 0.2s, color 0.2s;
+}
+
+.drawer-link:hover,
+.drawer-link:active {
+  background: rgba(168, 85, 247, 0.12);
+  color: #ffffff;
+}
+
+.drawer-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-light);
+}
+
+.drawer-btn {
+  width: 100%;
+  justify-content: center;
+}
+
+.drawer-wa-btn {
+  width: 100%;
+  justify-content: center;
+}
+
 .reading-progress {
   position: fixed;
   top: 80px;
@@ -1077,6 +1226,227 @@ h2 span {
   font-size: 15px;
   color: var(--text-muted);
   line-height: 1.7;
+}
+
+/* Grade Interativa de Dispositivos Compatíveis */
+.devices-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 36px;
+}
+
+.device-card {
+  background: linear-gradient(150deg, #140f1d 0%, #0d0a14 70%);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.device-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: var(--card-border-hover);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55), 0 0 24px rgba(157, 78, 221, 0.22);
+}
+
+.device-card-media {
+  height: 190px;
+  background: #090610;
+  overflow: hidden;
+  position: relative;
+}
+
+.device-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.device-card:hover .device-card-media img {
+  transform: scale(1.05);
+}
+
+.device-card-content {
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.device-card-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.device-card-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  background: rgba(168, 85, 247, 0.12);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  display: grid;
+  place-items: center;
+  color: var(--purple-light);
+  flex-shrink: 0;
+}
+
+.device-card-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+}
+
+.device-card-content h3 {
+  font-size: 19px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.device-card-content p {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+
+.device-card-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--purple-light);
+  margin-top: auto;
+}
+
+.device-card-action svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  transition: transform 0.2s ease;
+}
+
+.device-card:hover .device-card-action svg {
+  transform: translateX(4px);
+}
+
+/* Modal de Detalhes do Dispositivo */
+.device-dialog {
+  background: #110b1a;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  border-radius: var(--radius-xl);
+  color: #ffffff;
+  max-width: 600px;
+  width: calc(100% - 32px);
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85), 0 0 45px rgba(157, 78, 221, 0.25);
+}
+
+.device-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.device-dialog-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.device-dialog-image {
+  height: 240px;
+  background: #080510;
+  overflow: hidden;
+  position: relative;
+}
+
+.device-dialog-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.device-dialog-info {
+  padding: 26px 28px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.device-dialog-info h2 {
+  font-size: 26px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.device-dialog-info p {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+.device-dialog-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.device-dialog-close-btn {
+  background: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.device-dialog-close-btn:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+/* Destaques Visuais do Teste Grátis */
+.trial-highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 18px;
+  margin-bottom: 24px;
+  max-width: 580px;
+}
+
+.trial-highlight-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #f1edfa;
+  background: rgba(168, 85, 247, 0.08);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+}
+
+.trial-highlight-item svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--purple-light);
+  flex-shrink: 0;
 }
 
 /* ==========================================================================
@@ -1872,6 +2242,11 @@ h2 span {
     gap: 28px 18px;
   }
 
+  .devices-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
   .device-panel {
     grid-template-columns: 1fr;
   }
@@ -1918,6 +2293,20 @@ h2 span {
 
   .main-nav {
     display: none;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  .devices-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .trial-highlights-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
 
   .button-header-trial {

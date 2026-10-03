@@ -40,6 +40,13 @@
     <symbol id="i-crown" viewBox="0 0 24 24"><path d="M2 4l3 12h14l3-12-5 5-5-7-5 7-5-5z"/><path d="M5 20h14"/></symbol>
     <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
     <symbol id="i-wa" viewBox="0 0 24 24"><path d="M20.5 3.5a11.2 11.2 0 0 0-17.7 13L1 23l6.7-1.8A11.2 11.2 0 0 0 20.5 3.5Z"/><path d="M8 6.5 6.5 8c-.6 3.5 6 10 9.5 9.5l1.5-1.5-3-2-1.5 1c-2-.8-3.2-2-4-4l1-1.5Z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41m14.14-14.14-1.41 1.41"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+    <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+    <symbol id="i-filter" viewBox="0 0 24 24"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></symbol>
   </defs></svg>
 
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -53,14 +60,22 @@
       </a>
 
       <nav class="main-nav" aria-label="Navegação principal">
-        <a href="#inicio">Início</a>
+        <a href="#inicio" class="is-active">Início</a>
         <a href="#como-funciona">Como funciona</a>
         <a href="#dispositivos">Dispositivos</a>
+        <a href="#destaques">Catálogo</a>
         <a href="#planos">Planos</a>
-        <a href="#faq">Perguntas frequentes</a>
+        <a href="#depoimentos">Avaliações</a>
+        <a href="#faq">FAQ</a>
       </nav>
 
       <div class="header-actions">
+        <!-- Alternador de Tema Escuro / Claro -->
+        <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Alternar tema de cores" title="Alternar entre tema escuro e claro">
+          <span class="theme-icon icon-moon"><svg aria-hidden="true"><use href="#i-moon"/></svg></span>
+          <span class="theme-icon icon-sun"><svg aria-hidden="true"><use href="#i-sun"/></svg></span>
+        </button>
+
         <a class="button button-header-trial" href="https://wa.me/558781584372?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20meu%20teste%20gr%C3%A1tis%20da%20UltraPlay." target="_blank" rel="noopener noreferrer">
           <span>Testar grátis</span>
         </a>
@@ -87,11 +102,21 @@
       </a>
       <button type="button" class="drawer-close" id="drawer-close" aria-label="Fechar menu">✕</button>
     </div>
+    <div class="drawer-theme-box">
+      <span>Aparência</span>
+      <button type="button" class="theme-toggle-btn theme-toggle-drawer" id="drawer-theme-toggle" aria-label="Alternar tema">
+        <span class="theme-icon icon-moon"><svg aria-hidden="true"><use href="#i-moon"/></svg></span>
+        <span class="theme-icon icon-sun"><svg aria-hidden="true"><use href="#i-sun"/></svg></span>
+        <span class="theme-toggle-text">Modo Escuro</span>
+      </button>
+    </div>
     <nav class="mobile-nav-links">
       <a href="#inicio" class="drawer-link">Início</a>
       <a href="#como-funciona" class="drawer-link">Como funciona</a>
       <a href="#dispositivos" class="drawer-link">Dispositivos</a>
+      <a href="#destaques" class="drawer-link">Catálogo</a>
       <a href="#planos" class="drawer-link">Planos</a>
+      <a href="#depoimentos" class="drawer-link">Avaliações</a>
       <a href="#faq" class="drawer-link">Perguntas frequentes</a>
     </nav>
     <div class="drawer-footer">
@@ -343,7 +368,35 @@
         <div>
           <span class="eyebrow">ENCONTRE SUA PRÓXIMA HISTÓRIA</span>
           <h2 id="highlights-title">Conteúdos em <span>destaque.</span></h2>
-          <p class="catalog-note">Uma seleção dos maiores títulos disponíveis. Experimente no teste grátis.</p>
+          <p class="catalog-note">Uma seleção dos maiores títulos disponíveis. Clique em um cartaz para ver detalhes e solicitar seu teste grátis.</p>
+        </div>
+      </div>
+
+      <!-- Barra de Filtros e Busca Rápida -->
+      <div class="container catalog-toolbar reveal" data-aos="fade-up">
+        <div class="catalog-pills" role="tablist" aria-label="Filtrar catálogo por categoria">
+          <button type="button" class="catalog-pill is-active" data-catalog-filter="all" role="tab" aria-selected="true">
+            <svg class="icon" aria-hidden="true"><use href="#i-sparkles"/></svg>
+            <span>Todos</span>
+          </button>
+          <button type="button" class="catalog-pill" data-catalog-filter="filmes" role="tab" aria-selected="false">
+            <svg class="icon" aria-hidden="true"><use href="#i-play"/></svg>
+            <span>Filmes</span>
+          </button>
+          <button type="button" class="catalog-pill" data-catalog-filter="series" role="tab" aria-selected="false">
+            <svg class="icon" aria-hidden="true"><use href="#i-tv"/></svg>
+            <span>Séries</span>
+          </button>
+          <button type="button" class="catalog-pill" data-catalog-filter="animes" role="tab" aria-selected="false">
+            <svg class="icon" aria-hidden="true"><use href="#i-zap"/></svg>
+            <span>Animes</span>
+          </button>
+        </div>
+
+        <div class="catalog-search-wrap">
+          <svg class="icon search-icon" aria-hidden="true"><use href="#i-search"/></svg>
+          <input type="text" id="catalog-search" class="catalog-search-input" placeholder="Pesquisar filme, série ou anime..." aria-label="Pesquisar no catálogo">
+          <button type="button" id="catalog-search-clear" class="search-clear-btn" aria-label="Limpar pesquisa" style="display: none;">✕</button>
         </div>
       </div>
 
@@ -353,8 +406,15 @@
         <span class="catalog-loader-text">Carregando catálogo 4K UltraPlay...</span>
       </div>
 
+      <!-- Mensagem de Nenhum Resultado Encontrado -->
+      <div id="catalog-empty" class="catalog-empty container" style="display: none;">
+        <svg class="icon empty-icon"><use href="#i-search"/></svg>
+        <p>Nenhum título encontrado para "<strong id="catalog-empty-query"></strong>".</p>
+        <span>Tente buscar por termos como "Mario", "Boys", "Solo", "Thrones" ou selecione outra categoria.</span>
+      </div>
+
       <!-- Fileira 01: Filmes -->
-      <div class="poster-row reveal" data-aos="fade-up">
+      <div class="poster-row reveal" data-category="filmes" data-aos="fade-up">
         <div class="row-heading container">
           <h3><span>01</span> Filmes Lançamentos</h3>
           <span class="row-tag">SEU PRÓXIMO PLAY</span>
@@ -362,39 +422,95 @@
         <div class="marquee poster-marquee">
           <div class="marquee-track">
             <div class="marquee-group">
-              <figure class="poster">
-                <div class="poster-image"><img src="assets/filmes-0.jpeg" alt="Cartaz de Michael" width="250" height="375" loading="lazy" decoding="async"></div>
-                <figcaption>Michael</figcaption>
+              <figure class="poster" role="button" tabindex="0" data-category="filmes" data-preview-title="Michael" data-preview-type="Filme · Cinebiografia" data-preview-badge="4K ULTRA HD" data-preview-rating="9.4" data-preview-desc="A história fascinante e inédita por trás da trajetória do maior ícone pop de todos os tempos, revelando seus processos criativos e shows históricos." data-preview-img="assets/filmes-0.jpeg">
+                <div class="poster-image">
+                  <img src="assets/filmes-0.jpeg" alt="Cartaz de Michael" width="250" height="375" loading="lazy" decoding="async">
+                  <span class="poster-badge">4K</span>
+                  <div class="poster-hover-overlay">
+                    <span class="hover-play-btn"><svg><use href="#i-play"/></svg></span>
+                    <span class="hover-play-text">Ver detalhes</span>
+                  </div>
+                </div>
+                <figcaption>Michael <span class="poster-sub">4K · Dub/Leg</span></figcaption>
               </figure>
-              <figure class="poster">
-                <div class="poster-image"><img src="assets/filmes-1.jpeg" alt="Cartaz de Super Mario Galaxy" width="250" height="375" loading="lazy" decoding="async"></div>
-                <figcaption>Super Mario Galaxy</figcaption>
+              <figure class="poster" role="button" tabindex="0" data-category="filmes" data-preview-title="Super Mario Galaxy" data-preview-type="Filme · Animação e Aventura" data-preview-badge="4K ULTRA HD" data-preview-rating="9.2" data-preview-desc="Mario e seus amigos partem em uma missão cósmica através das estrelas para salvar o reino dos cogumelos com visual deslumbrante e muita diversão." data-preview-img="assets/filmes-1.jpeg">
+                <div class="poster-image">
+                  <img src="assets/filmes-1.jpeg" alt="Cartaz de Super Mario Galaxy" width="250" height="375" loading="lazy" decoding="async">
+                  <span class="poster-badge">4K</span>
+                  <div class="poster-hover-overlay">
+                    <span class="hover-play-btn"><svg><use href="#i-play"/></svg></span>
+                    <span class="hover-play-text">Ver detalhes</span>
+                  </div>
+                </div>
+                <figcaption>Super Mario Galaxy <span class="poster-sub">4K · Dublado</span></figcaption>
               </figure>
-              <figure class="poster">
-                <div class="poster-image"><img src="assets/filmes-2.webp" alt="Cartaz de Toy Story 5" width="250" height="375" loading="lazy" decoding="async"></div>
-                <figcaption>Toy Story 5</figcaption>
+              <figure class="poster" role="button" tabindex="0" data-category="filmes" data-preview-title="Toy Story 5" data-preview-type="Filme · Animação e Família" data-preview-badge="4K ULTRA HD" data-preview-rating="9.1" data-preview-desc="Woody, Buzz e a turma enfrentam o mundo moderno da tecnologia e telas digitais em uma emocionante jornada sobre amizade e memórias inesquecíveis." data-preview-img="assets/filmes-2.webp">
+                <div class="poster-image">
+                  <img src="assets/filmes-2.webp" alt="Cartaz de Toy Story 5" width="250" height="375" loading="lazy" decoding="async">
+                  <span class="poster-badge">4K</span>
+                  <div class="poster-hover-overlay">
+                    <span class="hover-play-btn"><svg><use href="#i-play"/></svg></span>
+                    <span class="hover-play-text">Ver detalhes</span>
+                  </div>
+                </div>
+                <figcaption>Toy Story 5 <span class="poster-sub">4K · Dublado</span></figcaption>
               </figure>
-              <figure class="poster">
-                <div class="poster-image"><img src="assets/filmes-3.png" alt="Cartaz de O Diabo Veste Prada 2" width="250" height="375" loading="lazy" decoding="async"></div>
-                <figcaption>O Diabo Veste Prada 2</figcaption>
+              <figure class="poster" role="button" tabindex="0" data-category="filmes" data-preview-title="O Diabo Veste Prada 2" data-preview-type="Filme · Comédia e Drama" data-preview-badge="4K ULTRA HD" data-preview-rating="8.9" data-preview-desc="Miranda Priestly e Andy Sachs se reencontram em um novo cenário do jornalismo e moda digital, repleto de diálogos afiados e elegância pura." data-preview-img="assets/filmes-3.png">
+                <div class="poster-image">
+                  <img src="assets/filmes-3.png" alt="Cartaz de O Diabo Veste Prada 2" width="250" height="375" loading="lazy" decoding="async">
+                  <span class="poster-badge">4K</span>
+                  <div class="poster-hover-overlay">
+                    <span class="hover-play-btn"><svg><use href="#i-play"/></svg></span>
+                    <span class="hover-play-text">Ver detalhes</span>
+                  </div>
+                </div>
+                <figcaption>O Diabo Veste Prada 2 <span class="poster-sub">4K · Dub/Leg</span></figcaption>
               </figure>
             </div>
             <div class="marquee-group" aria-hidden="true">
-              <figure class="poster">
-                <div class="poster-image"><img src="assets/filmes-0.jpeg" alt="Cartaz de Michael" width="250" height="375" loading="lazy" decoding="async"></div>
-                <figcaption>Michael</figcaption>
+              <figure class="poster" role="button" tabindex="0" data-category="filmes" data-preview-title="Michael" data-preview-type="Filme · Cinebiografia" data-preview-badge="4K ULTRA HD" data-preview-rating="9.4" data-preview-desc="A história fascinante e inédita por trás da trajetória do maior ícone pop de todos os tempos, revelando seus processos criativos e shows históricos." data-preview-img="assets/filmes-0.jpeg">
+                <div class="poster-image">
+                  <img src="assets/filmes-0.jpeg" alt="Cartaz de Michael" width="250" height="375" loading="lazy" decoding="async">
+                  <span class="poster-badge">4K</span>
+                  <div class="poster-hover-overlay">
+                    <span class="hover-play-btn"><svg><use href="#i-play"/></svg></span>
+                    <span class="hover-play-text">Ver detalhes</span>
+                  </div>
+                </div>
+                <figcaption>Michael <span class="poster-sub">4K · Dub/Leg</span></figcaption>
               </figure>
-              <figure class="poster">
-                <div class="poster-image"><img src="assets/filmes-1.jpeg" alt="Cartaz de Super Mario Galaxy" width="250" height="375" loading="lazy" decoding="async"></div>
-                <figcaption>Super Mario Galaxy</figcaption>
+              <figure class="poster" role="button" tabindex="0" data-category="filmes" data-preview-title="Super Mario Galaxy" data-preview-type="Filme · Animação e Aventura" data-preview-badge="4K ULTRA HD" data-preview-rating="9.2" data-preview-desc="Mario e seus amigos partem em uma missão cósmica através das estrelas para salvar o reino dos cogumelos com visual deslumbrante e muita diversão." data-preview-img="assets/filmes-1.jpeg">
+                <div class="poster-image">
+                  <img src="assets/filmes-1.jpeg" alt="Cartaz de Super Mario Galaxy" width="250" height="375" loading="lazy" decoding="async">
+                  <span class="poster-badge">4K</span>
+                  <div class="poster-hover-overlay">
+                    <span class="hover-play-btn"><svg><use href="#i-play"/></svg></span>
+                    <span class="hover-play-text">Ver detalhes</span>
+                  </div>
+                </div>
+                <figcaption>Super Mario Galaxy <span class="poster-sub">4K · Dublado</span></figcaption>
               </figure>
-              <figure class="poster">
-                <div class="poster-image"><img src="assets/filmes-2.webp" alt="Cartaz de Toy Story 5" width="250" height="375" loading="lazy" decoding="async"></div>
-                <figcaption>Toy Story 5</figcaption>
+              <figure class="poster" role="button" tabindex="0" data-category="filmes" data-preview-title="Toy Story 5" data-preview-type="Filme · Animação e Família" data-preview-badge="4K ULTRA HD" data-preview-rating="9.1" data-preview-desc="Woody, Buzz e a turma enfrentam o mundo moderno da tecnologia e telas digitais em uma emocionante jornada sobre amizade e memórias inesquecíveis." data-preview-img="assets/filmes-2.webp">
+                <div class="poster-image">
+                  <img src="assets/filmes-2.webp" alt="Cartaz de Toy Story 5" width="250" height="375" loading="lazy" decoding="async">
+                  <span class="poster-badge">4K</span>
+                  <div class="poster-hover-overlay">
+                    <span class="hover-play-btn"><svg><use href="#i-play"/></svg></span>
+                    <span class="hover-play-text">Ver detalhes</span>
+                  </div>
+                </div>
+                <figcaption>Toy Story 5 <span class="poster-sub">4K · Dublado</span></figcaption>
               </figure>
-              <figure class="poster">
-                <div class="poster-image"><img src="assets/filmes-3.png" alt="Cartaz de O Diabo Veste Prada 2" width="250" height="375" loading="lazy" decoding="async"></div>
-                <figcaption>O Diabo Veste Prada 2</figcaption>
+              <figure class="poster" role="button" tabindex="0" data-category="filmes" data-preview-title="O Diabo Veste Prada 2" data-preview-type="Filme · Comédia e Drama" data-preview-badge="4K ULTRA HD" data-preview-rating="8.9" data-preview-desc="Miranda Priestly e Andy Sachs se reencontram em um novo cenário do jornalismo e moda digital, repleto de diálogos afiados e elegância pura." data-preview-img="assets/filmes-3.png">
+                <div class="poster-image">
+                  <img src="assets/filmes-3.png" alt="Cartaz de O Diabo Veste Prada 2" width="250" height="375" loading="lazy" decoding="async">
+                  <span class="poster-badge">4K</span>
+                  <div class="poster-hover-overlay">
+                    <span class="hover-play-btn"><svg><use href="#i-play"/></svg></span>
+                    <span class="hover-play-text">Ver detalhes</span>
+                  </div>
+                </div>
+                <figcaption>O Diabo Veste Prada 2 <span class="poster-sub">4K · Dub/Leg</span></figcaption>
               </figure>
             </div>
           </div>
@@ -402,7 +518,7 @@
       </div>
 
       <!-- Fileira 02: Séries -->
-      <div class="poster-row reveal" data-aos="fade-up">
+      <div class="poster-row reveal" data-category="series" data-aos="fade-up">
         <div class="row-heading container">
           <h3><span>02</span> Séries do Momento</h3>
           <span class="row-tag">MARATONA COMPLETA</span>
@@ -410,39 +526,95 @@
         <div class="marquee poster-marquee reverse">
           <div class="marquee-track">
             <div class="marquee-group">
-              <figure class="poster">
-                <div class="poster-image"><img src="assets/series-0.jpeg" alt="Cartaz de La Casa de Papel" width="250" height="375" loading="lazy" decoding="async"></div>
-                <figcaption>La Casa de Papel</figcaption>
+              <figure class="poster" role="button" tabindex="0" data-category="series" data-preview-title="La Casa de Papel" data-preview-type="Série · Temporadas 1 a 5" data-preview-badge="FULL HD / 4K" data-preview-rating="8.8" data-preview-desc="Oito ladrões tomam a Casa da Moeda da Espanha em um dos assaltos mais elaborados da história do crime organizado sob comando do Professor." data-preview-img="assets/series-0.jpeg">
+                <div class="poster-image">
+                  <img src="assets/series-0.jpeg" alt="Cartaz de La Casa de Papel" width="250" height="375" loading="lazy" decoding="async">
+                  <span class="poster-badge">4K</span>
+                  <div class="poster-hover-overlay">
+                    <span class="hover-play-btn"><svg><use href="#i-play"/></svg></span>
+                    <span class="hover-play-text">Ver detalhes</span>
+                  </div>
+                </div>
+                <figcaption>La Casa de Papel <span class="poster-sub">Completa · Dublado</span></figcaption>
               </figure>
-              <figure class="poster">
-                <div class="poster-image"><img src="assets/series-1.jpeg" alt="Cartaz de Game of Thrones" width="250" height="375" loading="lazy" decoding="async"></div>
-                <figcaption>Game of Thrones</figcaption>
+              <figure class="poster" role="button" tabindex="0" data-category="series" data-preview-title="Game of Thrones" data-preview-type="Série · 8 Temporadas Completas" data-preview-badge="4K HDR" data-preview-rating="9.3" data-preview-desc="Nove nobres famílias lutam pelo controle de Westeros enquanto um perigo adormecido ressurge nos confins do Norte." data-preview-img="assets/series-1.jpeg">
+                <div class="poster-image">
+                  <img src="assets/series-1.jpeg" alt="Cartaz de Game of Thrones" width="250" height="375" loading="lazy" decoding="async">
+                  <span class="poster-badge">4K</span>
+                  <div class="poster-hover-overlay">
+                    <span class="hover-play-btn"><svg><use href="#i-play"/></svg></span>
+                    <span class="hover-play-text">Ver detalhes</span>
+                  </div>
+                </div>
+                <figcaption>Game of Thrones <span class="poster-sub">4K · Dub/Leg</span></figcaption>
               </figure>
-              <figure class="poster">
-                <div class="poster-image"><img src="assets/series-2.png" alt="Cartaz de The Boys" width="250" height="375" loading="lazy" decoding="async"></div>
-                <figcaption>The Boys</figcaption>
+              <figure class="poster" role="button" tabindex="0" data-category="series" data-preview-title="The Boys" data-preview-type="Série · Todas as Temporadas" data-preview-badge="4K ULTRA HD" data-preview-rating="8.7" data-preview-desc="Quando super-heróis abusam de seus superpoderes em vez de usá-los para o bem, um grupo de justiceiros faz de tudo para desmascarar a corporação Vought." data-preview-img="assets/series-2.png">
+                <div class="poster-image">
+                  <img src="assets/series-2.png" alt="Cartaz de The Boys" width="250" height="375" loading="lazy" decoding="async">
+                  <span class="poster-badge">4K</span>
+                  <div class="poster-hover-overlay">
+                    <span class="hover-play-btn"><svg><use href="#i-play"/></svg></span>
+                    <span class="hover-play-text">Ver detalhes</span>
+                  </div>
+                </div>
+                <figcaption>The Boys <span class="poster-sub">4K · Dub/Leg</span></figcaption>
               </figure>
-              <figure class="poster">
-                <div class="poster-image"><img src="assets/series-3.jpg" alt="Cartaz de Origem" width="250" height="375" loading="lazy" decoding="async"></div>
-                <figcaption>Origem</figcaption>
+              <figure class="poster" role="button" tabindex="0" data-category="series" data-preview-title="Origem (From)" data-preview-type="Série · Mistério e Suspense" data-preview-badge="FULL HD" data-preview-rating="8.6" data-preview-desc="O mistério de uma cidade no coração da América que aprisiona todos que entram, enquanto criaturas noturnas ameaçam os moradores restantes." data-preview-img="assets/series-3.jpg">
+                <div class="poster-image">
+                  <img src="assets/series-3.jpg" alt="Cartaz de Origem" width="250" height="375" loading="lazy" decoding="async">
+                  <span class="poster-badge">HD</span>
+                  <div class="poster-hover-overlay">
+                    <span class="hover-play-btn"><svg><use href="#i-play"/></svg></span>
+                    <span class="hover-play-text">Ver detalhes</span>
+                  </div>
+                </div>
+                <figcaption>Origem <span class="poster-sub">Novos Episódios</span></figcaption>
               </figure>
             </div>
             <div class="marquee-group" aria-hidden="true">
-              <figure class="poster">
-                <div class="poster-image"><img src="assets/series-0.jpeg" alt="Cartaz de La Casa de Papel" width="250" height="375" loading="lazy" decoding="async"></div>
-                <figcaption>La Casa de Papel</figcaption>
+              <figure class="poster" role="button" tabindex="0" data-category="series" data-preview-title="La Casa de Papel" data-preview-type="Série · Temporadas 1 a 5" data-preview-badge="FULL HD / 4K" data-preview-rating="8.8" data-preview-desc="Oito ladrões tomam a Casa da Moeda da Espanha em um dos assaltos mais elaborados da história do crime organizado sob comando do Professor." data-preview-img="assets/series-0.jpeg">
+                <div class="poster-image">
+                  <img src="assets/series-0.jpeg" alt="Cartaz de La Casa de Papel" width="250" height="375" loading="lazy" decoding="async">
+                  <span class="poster-badge">4K</span>
+                  <div class="poster-hover-overlay">
+                    <span class="hover-play-btn"><svg><use href="#i-play"/></svg></span>
+                    <span class="hover-play-text">Ver detalhes</span>
+                  </div>
+                </div>
+                <figcaption>La Casa de Papel <span class="poster-sub">Completa · Dublado</span></figcaption>
               </figure>
-              <figure class="poster">
-                <div class="poster-image"><img src="assets/series-1.jpeg" alt="Cartaz de Game of Thrones" width="250" height="375" loading="lazy" decoding="async"></div>
-                <figcaption>Game of Thrones</figcaption>
+              <figure class="poster" role="button" tabindex="0" data-category="series" data-preview-title="Game of Thrones" data-preview-type="Série · 8 Temporadas Completas" data-preview-badge="4K HDR" data-preview-rating="9.3" data-preview-desc="Nove nobres famílias lutam pelo controle de Westeros enquanto um perigo adormecido ressurge nos confins do Norte." data-preview-img="assets/series-1.jpeg">
+                <div class="poster-image">
+                  <img src="assets/series-1.jpeg" alt="Cartaz de Game of Thrones" width="250" height="375" loading="lazy" decoding="async">
+                  <span class="poster-badge">4K</span>
+                  <div class="poster-hover-overlay">
+                    <span class="hover-play-btn"><svg><use href="#i-play"/></svg></span>
+                    <span class="hover-play-text">Ver detalhes</span>
+                  </div>
+                </div>
+                <figcaption>Game of Thrones <span class="poster-sub">4K · Dub/Leg</span></figcaption>
               </figure>
-              <figure class="poster">
-                <div class="poster-image"><img src="assets/series-2.png" alt="Cartaz de The Boys" width="250" height="375" loading="lazy" decoding="async"></div>
-                <figcaption>The Boys</figcaption>
+              <figure class="poster" role="button" tabindex="0" data-category="series" data-preview-title="The Boys" data-preview-type="Série · Todas as Temporadas" data-preview-badge="4K ULTRA HD" data-preview-rating="8.7" data-preview-desc="Quando super-heróis abusam de seus superpoderes em vez de usá-los para o bem, um grupo de justiceiros faz de tudo para desmascarar a corporação Vought." data-preview-img="assets/series-2.png">
+                <div class="poster-image">
+                  <img src="assets/series-2.png" alt="Cartaz de The Boys" width="250" height="375" loading="lazy" decoding="async">
+                  <span class="poster-badge">4K</span>
+                  <div class="poster-hover-overlay">
+                    <span class="hover-play-btn"><svg><use href="#i-play"/></svg></span>
+                    <span class="hover-play-text">Ver detalhes</span>
+                  </div>
+                </div>
+                <figcaption>The Boys <span class="poster-sub">4K · Dub/Leg</span></figcaption>
               </figure>
-              <figure class="poster">
-                <div class="poster-image"><img src="assets/series-3.jpg" alt="Cartaz de Origem" width="250" height="375" loading="lazy" decoding="async"></div>
-                <figcaption>Origem</figcaption>
+              <figure class="poster" role="button" tabindex="0" data-category="series" data-preview-title="Origem (From)" data-preview-type="Série · Mistério e Suspense" data-preview-badge="FULL HD" data-preview-rating="8.6" data-preview-desc="O mistério de uma cidade no coração da América que aprisiona todos que entram, enquanto criaturas noturnas ameaçam os moradores restantes." data-preview-img="assets/series-3.jpg">
+                <div class="poster-image">
+                  <img src="assets/series-3.jpg" alt="Cartaz de Origem" width="250" height="375" loading="lazy" decoding="async">
+                  <span class="poster-badge">HD</span>
+                  <div class="poster-hover-overlay">
+                    <span class="hover-play-btn"><svg><use href="#i-play"/></svg></span>
+                    <span class="hover-play-text">Ver detalhes</span>
+                  </div>
+                </div>
+                <figcaption>Origem <span class="poster-sub">Novos Episódios</span></figcaption>
               </figure>
             </div>
           </div>
@@ -450,7 +622,7 @@
       </div>
 
       <!-- Fileira 03: Animes -->
-      <div class="poster-row reveal" data-aos="fade-up">
+      <div class="poster-row reveal" data-category="animes" data-aos="fade-up">
         <div class="row-heading container">
           <h3><span>03</span> Animes em Destaque</h3>
           <span class="row-tag">EPISÓDIOS NOVOS</span>
@@ -458,39 +630,95 @@
         <div class="marquee poster-marquee">
           <div class="marquee-track">
             <div class="marquee-group">
-              <figure class="poster">
-                <div class="poster-image"><img src="assets/animes-0.webp" alt="Cartaz de Solo Leveling" width="250" height="375" loading="lazy" decoding="async"></div>
-                <figcaption>Solo Leveling</figcaption>
+              <figure class="poster" role="button" tabindex="0" data-category="animes" data-preview-title="Solo Leveling" data-preview-type="Anime · Ação e Sobrenatural" data-preview-badge="4K ULTRA HD" data-preview-rating="9.5" data-preview-desc="Sung Jin-woo, o caçador mais fraco de toda a humanidade, desperta um poder oculto de evolução contínua após uma incursão mortal em uma dungeon dupla." data-preview-img="assets/animes-0.webp">
+                <div class="poster-image">
+                  <img src="assets/animes-0.webp" alt="Cartaz de Solo Leveling" width="250" height="375" loading="lazy" decoding="async">
+                  <span class="poster-badge">4K</span>
+                  <div class="poster-hover-overlay">
+                    <span class="hover-play-btn"><svg><use href="#i-play"/></svg></span>
+                    <span class="hover-play-text">Ver detalhes</span>
+                  </div>
+                </div>
+                <figcaption>Solo Leveling <span class="poster-sub">4K · Dub/Leg</span></figcaption>
               </figure>
-              <figure class="poster">
-                <div class="poster-image"><img src="assets/animes-1.jpg" alt="Cartaz de Naruto Shippuden" width="250" height="375" loading="lazy" decoding="async"></div>
-                <figcaption>Naruto Shippuden</figcaption>
+              <figure class="poster" role="button" tabindex="0" data-category="animes" data-preview-title="Naruto Shippuden" data-preview-type="Anime · Completo Dublado" data-preview-badge="FULL HD" data-preview-rating="9.0" data-preview-desc="Naruto Uzumaki retorna à Aldeia da Folha mais forte e determinado a resgatar seu amigo Sasuke e proteger o mundo ninja da organização Akatsuki." data-preview-img="assets/animes-1.jpg">
+                <div class="poster-image">
+                  <img src="assets/animes-1.jpg" alt="Cartaz de Naruto Shippuden" width="250" height="375" loading="lazy" decoding="async">
+                  <span class="poster-badge">HD</span>
+                  <div class="poster-hover-overlay">
+                    <span class="hover-play-btn"><svg><use href="#i-play"/></svg></span>
+                    <span class="hover-play-text">Ver detalhes</span>
+                  </div>
+                </div>
+                <figcaption>Naruto Shippuden <span class="poster-sub">Completo Dublado</span></figcaption>
               </figure>
-              <figure class="poster">
-                <div class="poster-image"><img src="assets/animes-2.jpg" alt="Cartaz de Jujutsu Kaisen" width="250" height="375" loading="lazy" decoding="async"></div>
-                <figcaption>Jujutsu Kaisen</figcaption>
+              <figure class="poster" role="button" tabindex="0" data-category="animes" data-preview-title="Jujutsu Kaisen" data-preview-type="Anime · Temporadas Completas" data-preview-badge="4K HDR" data-preview-rating="9.2" data-preview-desc="Yuji Itadori engole um dedo amaldiçoado e passa a compartilhar o corpo com Sukuna, o Rei das Maldições, iniciando seu treinamento como feiticeiro jujutsu." data-preview-img="assets/animes-2.jpg">
+                <div class="poster-image">
+                  <img src="assets/animes-2.jpg" alt="Cartaz de Jujutsu Kaisen" width="250" height="375" loading="lazy" decoding="async">
+                  <span class="poster-badge">4K</span>
+                  <div class="poster-hover-overlay">
+                    <span class="hover-play-btn"><svg><use href="#i-play"/></svg></span>
+                    <span class="hover-play-text">Ver detalhes</span>
+                  </div>
+                </div>
+                <figcaption>Jujutsu Kaisen <span class="poster-sub">4K · Dub/Leg</span></figcaption>
               </figure>
-              <figure class="poster">
-                <div class="poster-image"><img src="assets/animes-3.jpeg" alt="Cartaz de One Piece" width="250" height="375" loading="lazy" decoding="async"></div>
-                <figcaption>One Piece</figcaption>
+              <figure class="poster" role="button" tabindex="0" data-category="animes" data-preview-title="One Piece" data-preview-type="Anime · Atualizado Semanalmente" data-preview-badge="FULL HD" data-preview-rating="9.3" data-preview-desc="Luffy e o bando do Chapéu de Palha navegam pelos mares perigosos da Grand Line em busca do tesouro supremo e do título de Rei dos Piratas." data-preview-img="assets/animes-3.jpeg">
+                <div class="poster-image">
+                  <img src="assets/animes-3.jpeg" alt="Cartaz de One Piece" width="250" height="375" loading="lazy" decoding="async">
+                  <span class="poster-badge">HD</span>
+                  <div class="poster-hover-overlay">
+                    <span class="hover-play-btn"><svg><use href="#i-play"/></svg></span>
+                    <span class="hover-play-text">Ver detalhes</span>
+                  </div>
+                </div>
+                <figcaption>One Piece <span class="poster-sub">Episódios Semanais</span></figcaption>
               </figure>
             </div>
             <div class="marquee-group" aria-hidden="true">
-              <figure class="poster">
-                <div class="poster-image"><img src="assets/animes-0.webp" alt="Cartaz de Solo Leveling" width="250" height="375" loading="lazy" decoding="async"></div>
-                <figcaption>Solo Leveling</figcaption>
+              <figure class="poster" role="button" tabindex="0" data-category="animes" data-preview-title="Solo Leveling" data-preview-type="Anime · Ação e Sobrenatural" data-preview-badge="4K ULTRA HD" data-preview-rating="9.5" data-preview-desc="Sung Jin-woo, o caçador mais fraco de toda a humanidade, desperta um poder oculto de evolução contínua após uma incursão mortal em uma dungeon dupla." data-preview-img="assets/animes-0.webp">
+                <div class="poster-image">
+                  <img src="assets/animes-0.webp" alt="Cartaz de Solo Leveling" width="250" height="375" loading="lazy" decoding="async">
+                  <span class="poster-badge">4K</span>
+                  <div class="poster-hover-overlay">
+                    <span class="hover-play-btn"><svg><use href="#i-play"/></svg></span>
+                    <span class="hover-play-text">Ver detalhes</span>
+                  </div>
+                </div>
+                <figcaption>Solo Leveling <span class="poster-sub">4K · Dub/Leg</span></figcaption>
               </figure>
-              <figure class="poster">
-                <div class="poster-image"><img src="assets/animes-1.jpg" alt="Cartaz de Naruto Shippuden" width="250" height="375" loading="lazy" decoding="async"></div>
-                <figcaption>Naruto Shippuden</figcaption>
+              <figure class="poster" role="button" tabindex="0" data-category="animes" data-preview-title="Naruto Shippuden" data-preview-type="Anime · Completo Dublado" data-preview-badge="FULL HD" data-preview-rating="9.0" data-preview-desc="Naruto Uzumaki retorna à Aldeia da Folha mais forte e determinado a resgatar seu amigo Sasuke e proteger o mundo ninja da organização Akatsuki." data-preview-img="assets/animes-1.jpg">
+                <div class="poster-image">
+                  <img src="assets/animes-1.jpg" alt="Cartaz de Naruto Shippuden" width="250" height="375" loading="lazy" decoding="async">
+                  <span class="poster-badge">HD</span>
+                  <div class="poster-hover-overlay">
+                    <span class="hover-play-btn"><svg><use href="#i-play"/></svg></span>
+                    <span class="hover-play-text">Ver detalhes</span>
+                  </div>
+                </div>
+                <figcaption>Naruto Shippuden <span class="poster-sub">Completo Dublado</span></figcaption>
               </figure>
-              <figure class="poster">
-                <div class="poster-image"><img src="assets/animes-2.jpg" alt="Cartaz de Jujutsu Kaisen" width="250" height="375" loading="lazy" decoding="async"></div>
-                <figcaption>Jujutsu Kaisen</figcaption>
+              <figure class="poster" role="button" tabindex="0" data-category="animes" data-preview-title="Jujutsu Kaisen" data-preview-type="Anime · Temporadas Completas" data-preview-badge="4K HDR" data-preview-rating="9.2" data-preview-desc="Yuji Itadori engole um dedo amaldiçoado e passa a compartilhar o corpo com Sukuna, o Rei das Maldições, iniciando seu treinamento como feiticeiro jujutsu." data-preview-img="assets/animes-2.jpg">
+                <div class="poster-image">
+                  <img src="assets/animes-2.jpg" alt="Cartaz de Jujutsu Kaisen" width="250" height="375" loading="lazy" decoding="async">
+                  <span class="poster-badge">4K</span>
+                  <div class="poster-hover-overlay">
+                    <span class="hover-play-btn"><svg><use href="#i-play"/></svg></span>
+                    <span class="hover-play-text">Ver detalhes</span>
+                  </div>
+                </div>
+                <figcaption>Jujutsu Kaisen <span class="poster-sub">4K · Dub/Leg</span></figcaption>
               </figure>
-              <figure class="poster">
-                <div class="poster-image"><img src="assets/animes-3.jpeg" alt="Cartaz de One Piece" width="250" height="375" loading="lazy" decoding="async"></div>
-                <figcaption>One Piece</figcaption>
+              <figure class="poster" role="button" tabindex="0" data-category="animes" data-preview-title="One Piece" data-preview-type="Anime · Atualizado Semanalmente" data-preview-badge="FULL HD" data-preview-rating="9.3" data-preview-desc="Luffy e o bando do Chapéu de Palha navegam pelos mares perigosos da Grand Line em busca do tesouro supremo e do título de Rei dos Piratas." data-preview-img="assets/animes-3.jpeg">
+                <div class="poster-image">
+                  <img src="assets/animes-3.jpeg" alt="Cartaz de One Piece" width="250" height="375" loading="lazy" decoding="async">
+                  <span class="poster-badge">HD</span>
+                  <div class="poster-hover-overlay">
+                    <span class="hover-play-btn"><svg><use href="#i-play"/></svg></span>
+                    <span class="hover-play-text">Ver detalhes</span>
+                  </div>
+                </div>
+                <figcaption>One Piece <span class="poster-sub">Episódios Semanais</span></figcaption>
               </figure>
             </div>
           </div>
@@ -687,9 +915,20 @@
         <p>A mesma experiência UltraPlay em todos os planos.<br>Você escolhe por quanto tempo quer assinar.</p>
       </div>
 
+      <!-- Alternador Interativo de Planos -->
+      <div class="plans-filter-bar reveal" data-aos="fade-up">
+        <button type="button" class="plan-filter-btn is-active" data-plan-filter="all" role="tab" aria-selected="true">
+          <span>Todos os Planos</span>
+        </button>
+        <button type="button" class="plan-filter-btn" data-plan-filter="savings" role="tab" aria-selected="false">
+          <svg class="icon-crown" aria-hidden="true"><use href="#i-crown"/></svg>
+          <span>Melhor Custo-Benefício (-R$ 80)</span>
+        </button>
+      </div>
+
       <div class="plans-grid">
         <!-- Plano 01: Mensal -->
-        <article class="plan-card reveal" data-aos="fade-up" data-aos-delay="0">
+        <article class="plan-card reveal" data-aos="fade-up" data-aos-delay="0" data-plan-tier="regular">
           <div class="plan-header">
             <div class="plan-brand-row">
               <div class="plan-cat-logo cat-shadow" aria-hidden="true">
@@ -758,7 +997,7 @@
         </article>
 
         <!-- Plano 02: Trimestral -->
-        <article class="plan-card reveal" data-aos="fade-up" data-aos-delay="100">
+        <article class="plan-card reveal" data-aos="fade-up" data-aos-delay="100" data-plan-tier="savings">
           <div class="plan-header">
             <div class="plan-brand-row">
               <div class="plan-cat-logo cat-frost" aria-hidden="true">
@@ -827,7 +1066,7 @@
         </article>
 
         <!-- Plano 03: Semestral -->
-        <article class="plan-card reveal" data-aos="fade-up" data-aos-delay="200">
+        <article class="plan-card reveal" data-aos="fade-up" data-aos-delay="200" data-plan-tier="savings">
           <div class="plan-header">
             <div class="plan-brand-row">
               <div class="plan-cat-logo cat-flame" aria-hidden="true">
@@ -896,7 +1135,7 @@
         </article>
 
         <!-- Plano 04: Anual (Em Destaque / Mais Vendido) -->
-        <article class="plan-card plan-featured reveal" data-aos="fade-up" data-aos-delay="300">
+        <article class="plan-card plan-featured reveal" data-aos="fade-up" data-aos-delay="300" data-plan-tier="savings">
           <div class="featured-ribbon">
             <svg class="icon-crown" aria-hidden="true"><use href="#i-crown"/></svg>
             <span>MAIOR ECONOMIA</span>
@@ -970,6 +1209,134 @@
       </div>
 
       <p class="plans-footnote">*Economia calculada em comparação ao plano mensal de R$ 30 durante o mesmo período.</p>
+    </section>
+
+    <!-- GUIA & CALCULADORA DE VELOCIDADE DE CONEXÃO -->
+    <section class="speed-section container" id="velocidade" aria-labelledby="speed-title">
+      <div class="centered-heading reveal" data-aos="fade-up">
+        <span class="eyebrow">ESTABILIDADE E DESEMPENHO</span>
+        <h2 id="speed-title">Qualidade máxima em <span>qualquer conexão.</span></h2>
+        <p>A UltraPlay conta com servidores de alta performance e compressão inteligente H.265 para reprodução fluida sem travamentos.</p>
+      </div>
+
+      <div class="speed-card reveal" data-aos="fade-up">
+        <div class="speed-selector-header">
+          <div class="speed-icon-box">
+            <svg class="icon" aria-hidden="true"><use href="#i-wifi"/></svg>
+          </div>
+          <div>
+            <h3>Simulador de Conexão Recomendada</h3>
+            <p>Selecione a velocidade aproximada da sua internet e veja a qualidade suportada:</p>
+          </div>
+        </div>
+
+        <div class="speed-buttons" role="radiogroup" aria-label="Velocidade da internet">
+          <button type="button" class="speed-btn" data-speed="10" role="radio" aria-checked="false">10 Mbps</button>
+          <button type="button" class="speed-btn" data-speed="30" role="radio" aria-checked="false">30 Mbps</button>
+          <button type="button" class="speed-btn is-active" data-speed="50" role="radio" aria-checked="true">50 Mbps (Recomendado)</button>
+          <button type="button" class="speed-btn" data-speed="100" role="radio" aria-checked="false">100+ Mbps ou 5G</button>
+        </div>
+
+        <div class="speed-result-panel" id="speed-result">
+          <div class="speed-badge-wrap">
+            <span class="speed-quality-badge" id="speed-badge">4K ULTRA HD</span>
+            <span class="speed-status-text" id="speed-status">🟢 Conexão Ideal para Máxima Resolução</span>
+          </div>
+          <div class="speed-features-list" id="speed-features">
+            <div class="speed-feat"><svg class="icon-chk"><use href="#i-check"/></svg> Canais e Filmes em 4K HDR e Full HD com som cristalino</div>
+            <div class="speed-feat"><svg class="icon-chk"><use href="#i-check"/></svg> Suporte a múltiplos aparelhos simultâneos na mesma rede</div>
+            <div class="speed-feat"><svg class="icon-chk"><use href="#i-check"/></svg> Carregamento instantâneo de canais esportivos ao vivo</div>
+          </div>
+          <div class="speed-action-row">
+            <a class="button button-primary" id="speed-test-btn" href="https://wa.me/558781584372?text=Ol%C3%A1!%20Minha%20internet%20tem%2050%20Mega%20e%20gostaria%20de%20fazer%20o%20teste%20gr%C3%A1tis%20da%20UltraPlay." target="_blank" rel="noopener noreferrer">
+              <span>Testar na minha velocidade</span>
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </a>
+            <span class="speed-note">Teste sem compromisso por 3 horas no seu próprio aparelho</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO DE DEPOIMENTOS E AVALIAÇÕES DE CLIENTES (PROVA SOCIAL) -->
+    <section class="reviews-section container" id="depoimentos" aria-labelledby="reviews-title">
+      <div class="section-heading reveal" data-aos="fade-up">
+        <div>
+          <span class="eyebrow">QUEM USA, RECOMENDA</span>
+          <h2 id="reviews-title">O que dizem sobre a <span>UltraPlay.</span></h2>
+          <p>Mais de 15.000 clientes conectados diariamente com satisfação garantida.</p>
+        </div>
+        <div class="trust-score-badge">
+          <div class="stars-row" aria-label="5 estrelas">
+            <svg class="star-icon"><use href="#i-star"/></svg>
+            <svg class="star-icon"><use href="#i-star"/></svg>
+            <svg class="star-icon"><use href="#i-star"/></svg>
+            <svg class="star-icon"><use href="#i-star"/></svg>
+            <svg class="star-icon"><use href="#i-star"/></svg>
+          </div>
+          <strong>4.9 / 5.0</strong>
+          <span>Avaliação média dos clientes</span>
+        </div>
+      </div>
+
+      <div class="reviews-grid">
+        <article class="review-card reveal" data-aos="fade-up" data-aos-delay="0">
+          <div class="review-header">
+            <div class="review-avatar">MV</div>
+            <div class="review-user-info">
+              <h4>Marcos Vinicius S.</h4>
+              <span class="review-device">Smart TV Samsung 4K</span>
+            </div>
+            <div class="review-verified">
+              <svg class="icon-chk"><use href="#i-check"/></svg>
+              <span>Cliente Verificado</span>
+            </div>
+          </div>
+          <div class="review-stars">
+            <svg class="star-icon"><use href="#i-star"/></svg><svg class="star-icon"><use href="#i-star"/></svg><svg class="star-icon"><use href="#i-star"/></svg><svg class="star-icon"><use href="#i-star"/></svg><svg class="star-icon"><use href="#i-star"/></svg>
+          </div>
+          <p class="review-comment">"Fiz o teste grátis de 3 horas em um domingo de futebol e a estabilidade me surpreendeu. Não travou nem um segundo. Cancelei minha TV por assinatura antiga e assinei o plano anual!"</p>
+          <span class="review-date">Assinante há 8 meses · Plano Anual</span>
+        </article>
+
+        <article class="review-card review-featured reveal" data-aos="fade-up" data-aos-delay="100">
+          <div class="review-header">
+            <div class="review-avatar avatar-purple">CR</div>
+            <div class="review-user-info">
+              <h4>Camila Rodrigues</h4>
+              <span class="review-device">Fire TV Stick & iPhone</span>
+            </div>
+            <div class="review-verified">
+              <svg class="icon-chk"><use href="#i-check"/></svg>
+              <span>Cliente Verificado</span>
+            </div>
+          </div>
+          <div class="review-stars">
+            <svg class="star-icon"><use href="#i-star"/></svg><svg class="star-icon"><use href="#i-star"/></svg><svg class="star-icon"><use href="#i-star"/></svg><svg class="star-icon"><use href="#i-star"/></svg><svg class="star-icon"><use href="#i-star"/></svg>
+          </div>
+          <p class="review-comment">"Eu pagava três serviços de streaming separados e ainda faltavam séries e doramas. Na UltraPlay tem tudo organizado, com áudio em português e imagem perfeita. Melhor economia que fiz esse ano."</p>
+          <span class="review-date">Assinante há 1 ano · Plano Anual</span>
+        </article>
+
+        <article class="review-card reveal" data-aos="fade-up" data-aos-delay="200">
+          <div class="review-header">
+            <div class="review-avatar avatar-blue">AF</div>
+            <div class="review-user-info">
+              <h4>André Felipe M.</h4>
+              <span class="review-device">TV Box & Computador</span>
+            </div>
+            <div class="review-verified">
+              <svg class="icon-chk"><use href="#i-check"/></svg>
+              <span>Cliente Verificado</span>
+            </div>
+          </div>
+          <div class="review-stars">
+            <svg class="star-icon"><use href="#i-star"/></svg><svg class="star-icon"><use href="#i-star"/></svg><svg class="star-icon"><use href="#i-star"/></svg><svg class="star-icon"><use href="#i-star"/></svg><svg class="star-icon"><use href="#i-star"/></svg>
+          </div>
+          <p class="review-comment">"O suporte pelo WhatsApp é o grande diferencial. Me mandaram o passo a passo com fotos e vídeo explicando como configurar na minha TV Box. Em menos de 5 minutos já estava funcionando perfeitamente."</p>
+          <span class="review-date">Assinante há 5 meses · Plano Semestral</span>
+        </article>
+      </div>
     </section>
 
     <!-- SEÇÃO DE PERGUNTAS FREQUENTES (FAQ ACORDEÃO) -->
@@ -1074,11 +1441,83 @@
     </div>
   </footer>
 
-  <!-- BOTÃO FLUTUANTE DO WHATSAPP -->
-  <a class="floating-whatsapp" href="https://wa.me/558781584372?text=Ol%C3%A1!%20Tenho%20interesse%20na%20UltraPlay." target="_blank" rel="noopener noreferrer" aria-label="Falar com a UltraPlay no WhatsApp">
-    <svg class="icon"><use href="#i-wa"/></svg>
-    <span class="tooltip">Fale com a gente no WhatsApp</span>
-  </a>
+  <!-- WIDGET FLUTUANTE DO WHATSAPP COM STATUS ONLINE -->
+  <div class="whatsapp-widget-container" id="wa-widget">
+    <div class="wa-speech-bubble" id="wa-speech-bubble" role="dialog" aria-label="Mensagem de atendimento">
+      <button type="button" class="wa-bubble-close" id="wa-bubble-close" aria-label="Fechar mensagem">✕</button>
+      <div class="wa-bubble-avatar">
+        <img src="assets/ultraplay-logo.jpeg" alt="UltraPlay Atendimento" width="36" height="36">
+        <span class="wa-online-dot" aria-label="Atendente online"></span>
+      </div>
+      <div class="wa-bubble-text">
+        <strong>Atendimento UltraPlay</strong>
+        <p>Olá! Quer testar agora em seu aparelho? Libero 3 horas grátis no seu WhatsApp!</p>
+      </div>
+    </div>
+    <a class="floating-whatsapp" href="https://wa.me/558781584372?text=Ol%C3%A1!%20Tenho%20interesse%20na%20UltraPlay." target="_blank" rel="noopener noreferrer" aria-label="Falar com a UltraPlay no WhatsApp">
+      <span class="wa-pulse-ring" aria-hidden="true"></span>
+      <svg class="icon"><use href="#i-wa"/></svg>
+      <span class="wa-live-badge" title="Atendente disponível">🟢 Online</span>
+      <span class="tooltip">Falar com atendente no WhatsApp</span>
+    </a>
+  </div>
+
+  <!-- BARRA DE AÇÃO RÁPIDA FIXA MOBILE (DOCK) -->
+  <nav class="mobile-bottom-dock" aria-label="Ações rápidas mobile">
+    <button type="button" class="dock-item dock-highlight" data-open-trial>
+      <svg class="icon"><use href="#i-zap"/></svg>
+      <span>Teste 3h</span>
+    </button>
+    <a href="https://wa.me/558781584372?text=Ol%C3%A1!%20Tenho%20interesse%20na%20UltraPlay." target="_blank" rel="noopener noreferrer" class="dock-item">
+      <svg class="icon"><use href="#i-wa"/></svg>
+      <span>WhatsApp</span>
+    </a>
+    <a href="#planos" class="dock-item">
+      <svg class="icon"><use href="#i-crown"/></svg>
+      <span>Planos</span>
+    </a>
+    <button type="button" class="dock-item dock-theme-btn" id="dock-theme-toggle" aria-label="Alternar tema de cores">
+      <svg class="icon dock-icon-moon"><use href="#i-moon"/></svg>
+      <svg class="icon dock-icon-sun" style="display: none;"><use href="#i-sun"/></svg>
+      <span>Tema</span>
+    </button>
+  </nav>
+
+  <!-- MODAL DE PRÉ-VISUALIZAÇÃO DE CONTEÚDO (STREAMING PREVIEW) -->
+  <dialog id="preview-dialog" class="preview-dialog" aria-labelledby="preview-title" aria-describedby="preview-desc">
+    <button type="button" class="dialog-close" id="preview-dialog-close" aria-label="Fechar detalhes do título">×</button>
+    <div class="preview-dialog-card">
+      <div class="preview-dialog-media">
+        <img id="preview-img" src="assets/filmes-0.jpeg" alt="Cartaz do conteúdo" width="280" height="420">
+        <span class="preview-media-badge" id="preview-badge">4K ULTRA HD</span>
+      </div>
+      <div class="preview-dialog-details">
+        <div class="preview-meta-row">
+          <span class="preview-type" id="preview-type">Filme · Cinebiografia</span>
+          <div class="preview-rating-box">
+            <svg class="star-icon"><use href="#i-star"/></svg>
+            <span id="preview-rating">9.4</span>
+          </div>
+        </div>
+        <h2 id="preview-title" class="preview-title">Michael</h2>
+        <div class="preview-tags-row">
+          <span class="tag-pill">4K HDR</span>
+          <span class="tag-pill">Áudio Espacial</span>
+          <span class="tag-pill">Dublado & Legendado</span>
+        </div>
+        <p id="preview-desc" class="preview-desc">
+          A história fascinante e inédita por trás da trajetória do maior ícone pop de todos os tempos.
+        </p>
+        <div class="preview-dialog-footer">
+          <a id="preview-action-btn" class="button button-primary trial-glow" href="https://wa.me/558781584372?text=Ol%C3%A1!%20Gostaria%20de%20assistir%20Michael%20no%20teste%20gr%C3%A1tis%20da%20UltraPlay." target="_blank" rel="noopener noreferrer">
+            <svg class="icon"><use href="#i-play"/></svg>
+            <span>Liberar teste grátis para assistir</span>
+          </a>
+          <span class="preview-note">3 horas grátis sem compromisso e sem burocracia</span>
+        </div>
+      </div>
+    </div>
+  </dialog>
 
   <!-- MODAL INTERATIVO DE DISPOSITIVO ESPECÍFICO -->
   <dialog id="device-dialog" class="device-dialog" aria-labelledby="device-dialog-title" aria-describedby="device-dialog-desc">

@@ -318,6 +318,12 @@
         </div>
       </div>
 
+      <!-- Spinner Centralizado de Carregamento Inicial do Catálogo (Skeleton Loading) -->
+      <div class="catalog-loader" id="catalog-loader" aria-hidden="true">
+        <div class="catalog-spinner"></div>
+        <span class="catalog-loader-text">Carregando catálogo 4K UltraPlay...</span>
+      </div>
+
       <!-- Fileira 01: Filmes -->
       <div class="poster-row reveal" data-aos="fade-up">
         <div class="row-heading container">
@@ -580,8 +586,51 @@
         <!-- Plano 01: Mensal -->
         <article class="plan-card reveal" data-aos="fade-up" data-aos-delay="0">
           <div class="plan-header">
-            <span class="plan-kicker">01 / NO SEU RITMO</span>
-            <h3 class="plan-title">Mensal</h3>
+            <div class="plan-brand-row">
+              <div class="plan-cat-logo cat-shadow" aria-hidden="true">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="cat-avatar-svg">
+                  <defs>
+                    <filter id="glow-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="3" result="blur"/>
+                      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                    </filter>
+                    <linearGradient id="bgGrad-shadow" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#9333ea" stop-opacity="0.35"/>
+                      <stop offset="100%" stop-color="#080410" stop-opacity="0.9"/>
+                    </linearGradient>
+                  </defs>
+                  <polygon points="50,4 90,20 84,70 50,96 16,70 10,20" fill="url(#bgGrad-shadow)" stroke="#9333ea" stroke-width="2.5"/>
+                  <path d="M78,28 L86,22 M84,36 L92,34 M22,28 L14,22 M16,36 L8,34" stroke="#9333ea" stroke-width="1.5" stroke-linecap="round"/>
+                  <polygon points="26,42 18,12 42,28" fill="#16131f" stroke="#9333ea" stroke-width="1.5"/>
+                  <polygon points="27,38 23,19 38,29" fill="#4c1d95" opacity="0.8"/>
+                  <polygon points="74,42 82,12 58,28" fill="#16131f" stroke="#9333ea" stroke-width="1.5"/>
+                  <polygon points="73,38 77,19 62,29" fill="#4c1d95" opacity="0.8"/>
+                  <path d="M30,30 Q50,22 70,30 Q84,48 80,68 Q68,82 50,84 Q32,82 20,68 Q16,48 30,30 Z" fill="#16131f" stroke="#9333ea" stroke-width="1.5"/>
+                  <polygon points="16,56 8,58 19,64" fill="#16131f"/>
+                  <polygon points="84,56 92,58 81,64" fill="#16131f"/>
+                  <g filter="url(#glow-shadow)">
+                    <ellipse cx="36" cy="50" rx="9" ry="6" transform="rotate(-15 36 50)" fill="#facc15"/>
+                    <ellipse cx="36" cy="50" rx="2" ry="5.5" transform="rotate(-10 36 50)" fill="#090514"/>
+                    <circle cx="38" cy="48" r="1.5" fill="#ffffff" opacity="0.9"/>
+                  </g>
+                  <g filter="url(#glow-shadow)">
+                    <ellipse cx="64" cy="50" rx="9" ry="6" transform="rotate(15 64 50)" fill="#facc15"/>
+                    <ellipse cx="64" cy="50" rx="2" ry="5.5" transform="rotate(10 64 50)" fill="#090514"/>
+                    <circle cx="66" cy="48" r="1.5" fill="#ffffff" opacity="0.9"/>
+                  </g>
+                  <polygon points="50,60 46,56 54,56" fill="#9333ea"/>
+                  <path d="M50,60 L50,65 M50,65 Q45,69 40,66 M50,65 Q55,69 60,66" stroke="#9333ea" stroke-width="1.2" fill="none"/>
+                  <path d="M38,62 L18,60 M38,65 L16,68 M62,62 L82,60 M62,65 L84,68" stroke="#9333ea" stroke-width="1" stroke-linecap="round" opacity="0.75"/>
+                  <rect x="36" y="78" width="28" height="6" rx="2" fill="#581c87" stroke="#9333ea" stroke-width="1"/>
+                  <circle cx="50" cy="85" r="7" fill="#120a24" stroke="#9333ea" stroke-width="1.5"/>
+                  <polygon points="48,82 54,85 48,88" fill="#eab308"/>
+                </svg>
+              </div>
+              <div class="plan-brand-info">
+                <span class="plan-kicker">01 / NO SEU RITMO</span>
+                <h3 class="plan-title">Mensal</h3>
+              </div>
+            </div>
             <span class="plan-duration">1 mês de UltraPlay</span>
           </div>
           <div class="price-container">
@@ -606,8 +655,51 @@
         <!-- Plano 02: Trimestral -->
         <article class="plan-card reveal" data-aos="fade-up" data-aos-delay="100">
           <div class="plan-header">
-            <span class="plan-kicker">02 / MAIS TEMPO DE PLAY</span>
-            <h3 class="plan-title">Trimestral</h3>
+            <div class="plan-brand-row">
+              <div class="plan-cat-logo cat-frost" aria-hidden="true">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="cat-avatar-svg">
+                  <defs>
+                    <filter id="glow-frost" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="3" result="blur"/>
+                      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                    </filter>
+                    <linearGradient id="bgGrad-frost" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.35"/>
+                      <stop offset="100%" stop-color="#080410" stop-opacity="0.9"/>
+                    </linearGradient>
+                  </defs>
+                  <polygon points="50,4 90,20 84,70 50,96 16,70 10,20" fill="url(#bgGrad-frost)" stroke="#38bdf8" stroke-width="2.5"/>
+                  <path d="M78,28 L86,22 M84,36 L92,34 M22,28 L14,22 M16,36 L8,34" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round"/>
+                  <polygon points="26,42 18,12 42,28" fill="#f1f5f9" stroke="#38bdf8" stroke-width="1.5"/>
+                  <polygon points="27,38 23,19 38,29" fill="#38bdf8" opacity="0.8"/>
+                  <polygon points="74,42 82,12 58,28" fill="#f1f5f9" stroke="#38bdf8" stroke-width="1.5"/>
+                  <polygon points="73,38 77,19 62,29" fill="#38bdf8" opacity="0.8"/>
+                  <path d="M30,30 Q50,22 70,30 Q84,48 80,68 Q68,82 50,84 Q32,82 20,68 Q16,48 30,30 Z" fill="#f1f5f9" stroke="#38bdf8" stroke-width="1.5"/>
+                  <polygon points="16,56 8,58 19,64" fill="#f1f5f9"/>
+                  <polygon points="84,56 92,58 81,64" fill="#f1f5f9"/>
+                  <g filter="url(#glow-frost)">
+                    <ellipse cx="36" cy="50" rx="9" ry="6" transform="rotate(-15 36 50)" fill="#06b6d4"/>
+                    <ellipse cx="36" cy="50" rx="2" ry="5.5" transform="rotate(-10 36 50)" fill="#090514"/>
+                    <circle cx="38" cy="48" r="1.5" fill="#ffffff" opacity="0.9"/>
+                  </g>
+                  <g filter="url(#glow-frost)">
+                    <ellipse cx="64" cy="50" rx="9" ry="6" transform="rotate(15 64 50)" fill="#06b6d4"/>
+                    <ellipse cx="64" cy="50" rx="2" ry="5.5" transform="rotate(10 64 50)" fill="#090514"/>
+                    <circle cx="66" cy="48" r="1.5" fill="#ffffff" opacity="0.9"/>
+                  </g>
+                  <polygon points="50,60 46,56 54,56" fill="#38bdf8"/>
+                  <path d="M50,60 L50,65 M50,65 Q45,69 40,66 M50,65 Q55,69 60,66" stroke="#38bdf8" stroke-width="1.2" fill="none"/>
+                  <path d="M38,62 L18,60 M38,65 L16,68 M62,62 L82,60 M62,65 L84,68" stroke="#38bdf8" stroke-width="1" stroke-linecap="round" opacity="0.75"/>
+                  <rect x="36" y="78" width="28" height="6" rx="2" fill="#0284c7" stroke="#38bdf8" stroke-width="1"/>
+                  <circle cx="50" cy="85" r="7" fill="#120a24" stroke="#38bdf8" stroke-width="1.5"/>
+                  <polygon points="48,82 54,85 48,88" fill="#38bdf8"/>
+                </svg>
+              </div>
+              <div class="plan-brand-info">
+                <span class="plan-kicker">02 / MAIS TEMPO DE PLAY</span>
+                <h3 class="plan-title">Trimestral</h3>
+              </div>
+            </div>
             <span class="plan-duration">3 meses de UltraPlay</span>
           </div>
           <div class="price-container">
@@ -632,8 +724,51 @@
         <!-- Plano 03: Semestral -->
         <article class="plan-card reveal" data-aos="fade-up" data-aos-delay="200">
           <div class="plan-header">
-            <span class="plan-kicker">03 / SEIS MESES COM VOCÊ</span>
-            <h3 class="plan-title">Semestral</h3>
+            <div class="plan-brand-row">
+              <div class="plan-cat-logo cat-flame" aria-hidden="true">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="cat-avatar-svg">
+                  <defs>
+                    <filter id="glow-flame" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="3" result="blur"/>
+                      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                    </filter>
+                    <linearGradient id="bgGrad-flame" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#f97316" stop-opacity="0.35"/>
+                      <stop offset="100%" stop-color="#080410" stop-opacity="0.9"/>
+                    </linearGradient>
+                  </defs>
+                  <polygon points="50,4 90,20 84,70 50,96 16,70 10,20" fill="url(#bgGrad-flame)" stroke="#f97316" stroke-width="2.5"/>
+                  <path d="M78,28 L86,22 M84,36 L92,34 M22,28 L14,22 M16,36 L8,34" stroke="#f97316" stroke-width="1.5" stroke-linecap="round"/>
+                  <polygon points="26,42 18,12 42,28" fill="#ea580c" stroke="#f97316" stroke-width="1.5"/>
+                  <polygon points="27,38 23,19 38,29" fill="#fbbf24" opacity="0.8"/>
+                  <polygon points="74,42 82,12 58,28" fill="#ea580c" stroke="#f97316" stroke-width="1.5"/>
+                  <polygon points="73,38 77,19 62,29" fill="#fbbf24" opacity="0.8"/>
+                  <path d="M30,30 Q50,22 70,30 Q84,48 80,68 Q68,82 50,84 Q32,82 20,68 Q16,48 30,30 Z" fill="#ea580c" stroke="#f97316" stroke-width="1.5"/>
+                  <polygon points="16,56 8,58 19,64" fill="#ea580c"/>
+                  <polygon points="84,56 92,58 81,64" fill="#ea580c"/>
+                  <g filter="url(#glow-flame)">
+                    <ellipse cx="36" cy="50" rx="9" ry="6" transform="rotate(-15 36 50)" fill="#fef08a"/>
+                    <ellipse cx="36" cy="50" rx="2" ry="5.5" transform="rotate(-10 36 50)" fill="#090514"/>
+                    <circle cx="38" cy="48" r="1.5" fill="#ffffff" opacity="0.9"/>
+                  </g>
+                  <g filter="url(#glow-flame)">
+                    <ellipse cx="64" cy="50" rx="9" ry="6" transform="rotate(15 64 50)" fill="#fef08a"/>
+                    <ellipse cx="64" cy="50" rx="2" ry="5.5" transform="rotate(10 64 50)" fill="#090514"/>
+                    <circle cx="66" cy="48" r="1.5" fill="#ffffff" opacity="0.9"/>
+                  </g>
+                  <polygon points="50,60 46,56 54,56" fill="#f97316"/>
+                  <path d="M50,60 L50,65 M50,65 Q45,69 40,66 M50,65 Q55,69 60,66" stroke="#f97316" stroke-width="1.2" fill="none"/>
+                  <path d="M38,62 L18,60 M38,65 L16,68 M62,62 L82,60 M62,65 L84,68" stroke="#f97316" stroke-width="1" stroke-linecap="round" opacity="0.75"/>
+                  <rect x="36" y="78" width="28" height="6" rx="2" fill="#9a3412" stroke="#f97316" stroke-width="1"/>
+                  <circle cx="50" cy="85" r="7" fill="#120a24" stroke="#f97316" stroke-width="1.5"/>
+                  <polygon points="48,82 54,85 48,88" fill="#f59e0b"/>
+                </svg>
+              </div>
+              <div class="plan-brand-info">
+                <span class="plan-kicker">03 / SEIS MESES COM VOCÊ</span>
+                <h3 class="plan-title">Semestral</h3>
+              </div>
+            </div>
             <span class="plan-duration">6 meses de UltraPlay</span>
           </div>
           <div class="price-container">
@@ -662,8 +797,51 @@
             <span>MAIOR ECONOMIA · MAIS POPULAR</span>
           </div>
           <div class="plan-header">
-            <span class="plan-kicker">04 / UM ANO DE ULTRAPLAY</span>
-            <h3 class="plan-title">Anual</h3>
+            <div class="plan-brand-row">
+              <div class="plan-cat-logo cat-cosmic" aria-hidden="true">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="cat-avatar-svg">
+                  <defs>
+                    <filter id="glow-cosmic" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="3" result="blur"/>
+                      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                    </filter>
+                    <linearGradient id="bgGrad-cosmic" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#d946ef" stop-opacity="0.35"/>
+                      <stop offset="100%" stop-color="#080410" stop-opacity="0.9"/>
+                    </linearGradient>
+                  </defs>
+                  <polygon points="50,4 90,20 84,70 50,96 16,70 10,20" fill="url(#bgGrad-cosmic)" stroke="#d946ef" stroke-width="2.5"/>
+                  <path d="M78,28 L86,22 M84,36 L92,34 M22,28 L14,22 M16,36 L8,34" stroke="#d946ef" stroke-width="1.5" stroke-linecap="round"/>
+                  <polygon points="26,42 18,12 42,28" fill="#3b0764" stroke="#d946ef" stroke-width="1.5"/>
+                  <polygon points="27,38 23,19 38,29" fill="#e879f9" opacity="0.8"/>
+                  <polygon points="74,42 82,12 58,28" fill="#3b0764" stroke="#d946ef" stroke-width="1.5"/>
+                  <polygon points="73,38 77,19 62,29" fill="#e879f9" opacity="0.8"/>
+                  <path d="M30,30 Q50,22 70,30 Q84,48 80,68 Q68,82 50,84 Q32,82 20,68 Q16,48 30,30 Z" fill="#3b0764" stroke="#d946ef" stroke-width="1.5"/>
+                  <polygon points="16,56 8,58 19,64" fill="#3b0764"/>
+                  <polygon points="84,56 92,58 81,64" fill="#3b0764"/>
+                  <g filter="url(#glow-cosmic)">
+                    <ellipse cx="36" cy="50" rx="9" ry="6" transform="rotate(-15 36 50)" fill="#c084fc"/>
+                    <ellipse cx="36" cy="50" rx="2" ry="5.5" transform="rotate(-10 36 50)" fill="#090514"/>
+                    <circle cx="38" cy="48" r="1.5" fill="#ffffff" opacity="0.9"/>
+                  </g>
+                  <g filter="url(#glow-cosmic)">
+                    <ellipse cx="64" cy="50" rx="9" ry="6" transform="rotate(15 64 50)" fill="#c084fc"/>
+                    <ellipse cx="64" cy="50" rx="2" ry="5.5" transform="rotate(10 64 50)" fill="#090514"/>
+                    <circle cx="66" cy="48" r="1.5" fill="#ffffff" opacity="0.9"/>
+                  </g>
+                  <polygon points="50,60 46,56 54,56" fill="#d946ef"/>
+                  <path d="M50,60 L50,65 M50,65 Q45,69 40,66 M50,65 Q55,69 60,66" stroke="#d946ef" stroke-width="1.2" fill="none"/>
+                  <path d="M38,62 L18,60 M38,65 L16,68 M62,62 L82,60 M62,65 L84,68" stroke="#d946ef" stroke-width="1" stroke-linecap="round" opacity="0.75"/>
+                  <rect x="36" y="78" width="28" height="6" rx="2" fill="#701a75" stroke="#d946ef" stroke-width="1"/>
+                  <circle cx="50" cy="85" r="7" fill="#120a24" stroke="#d946ef" stroke-width="1.5"/>
+                  <polygon points="48,82 54,85 48,88" fill="#ec4899"/>
+                </svg>
+              </div>
+              <div class="plan-brand-info">
+                <span class="plan-kicker">04 / UM ANO DE ULTRAPLAY</span>
+                <h3 class="plan-title">Anual</h3>
+              </div>
+            </div>
             <span class="plan-duration">12 meses de UltraPlay</span>
           </div>
           <div class="price-container">

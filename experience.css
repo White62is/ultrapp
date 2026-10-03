@@ -7,6 +7,12 @@
   will-change: opacity, transform;
 }
 
+/* Prevenção de flash visual nos elementos acima da dobra no primeiro paint */
+.hero-content.reveal {
+  opacity: 1;
+  transform: none;
+}
+
 .reveal.aos-animate,
 .reveal.visible,
 .reveal.is-revealed {

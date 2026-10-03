@@ -4,31 +4,91 @@ import 'aos/dist/aos.css';
 (() => {
   'use strict';
 
-  // Configurar elementos .reveal com atributos do AOS para animações elegantes
-  document.querySelectorAll('.reveal').forEach(el => {
-    if (!el.hasAttribute('data-aos')) {
-      el.setAttribute('data-aos', 'fade-up');
-    }
-  });
-
-  // Escalonamento em cascata nos grids de benefícios, categorias, passos e planos
-  document.querySelectorAll('.benefits-grid, .category-grid, .steps-grid, .plans-grid').forEach(grid => {
-    grid.querySelectorAll('.reveal').forEach((item, idx) => {
-      if (!item.hasAttribute('data-aos-delay')) {
-        item.setAttribute('data-aos-delay', String(Math.min((idx % 4) * 90, 360)));
+  // Inicialização refinada do AOS com pequeno delay para prevenir "flash" visual (FOUC)
+  const initAOS = () => {
+    // Configurar elementos .reveal com atributos do AOS para animações elegantes
+    document.querySelectorAll('.reveal').forEach(el => {
+      if (!el.hasAttribute('data-aos')) {
+        el.setAttribute('data-aos', 'fade-up');
       }
     });
-  });
 
-  // Inicialização global da biblioteca AOS com foco em performance e impacto visual
-  AOS.init({
-    duration: 800,
-    easing: 'ease-out-cubic',
-    once: true,
-    offset: 50,
-    delay: 0,
-    disable: () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  });
+    // Escalonamento em cascata nos grids de benefícios, categorias, passos e planos
+    document.querySelectorAll('.benefits-grid, .category-grid, .steps-grid, .plans-grid').forEach(grid => {
+      grid.querySelectorAll('.reveal').forEach((item, idx) => {
+        if (!item.hasAttribute('data-aos-delay')) {
+          item.setAttribute('data-aos-delay', String(Math.min((idx % 4) * 90, 360)));
+        }
+      });
+    });
+
+    // Pequeno delay na inicialização (requestAnimationFrame + 60ms) para que os elementos
+    // já visíveis ao carregar a página não sofram "flash" visual ou saltos de layout
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        AOS.init({
+          duration: 800,
+          easing: 'ease-out-cubic',
+          once: true,
+          offset: 40,
+          delay: 0,
+          startEvent: 'DOMContentLoaded',
+          disable: () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        });
+        AOS.refresh();
+      }, 60);
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAOS);
+  } else {
+    initAOS();
+  }
+
+  // Gerenciamento do Skeleton Loading e Spinner Centralizado no Catálogo
+  const setupCatalogLoading = () => {
+    const posterImages = document.querySelectorAll('.poster-image');
+    const catalogLoader = document.getElementById('catalog-loader');
+
+    if (!posterImages.length) return;
+
+    let loadedCount = 0;
+    const requiredBatch = Math.min(6, posterImages.length);
+
+    posterImages.forEach(container => {
+      const img = container.querySelector('img');
+      if (!img) return;
+
+      const markAsLoaded = () => {
+        container.classList.add('is-loaded');
+        img.classList.add('is-loaded');
+        loadedCount++;
+        if (loadedCount >= requiredBatch && catalogLoader) {
+          catalogLoader.classList.add('is-hidden');
+        }
+      };
+
+      if (img.complete && img.naturalWidth !== 0) {
+        markAsLoaded();
+      } else {
+        img.addEventListener('load', markAsLoaded, { once: true });
+        img.addEventListener('error', markAsLoaded, { once: true });
+      }
+    });
+
+    // Timeout de segurança para ocultar o spinner caso a conexão esteja lenta
+    setTimeout(() => {
+      if (catalogLoader) catalogLoader.classList.add('is-hidden');
+      posterImages.forEach(c => c.classList.add('is-loaded'));
+    }, 1800);
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupCatalogLoading);
+  } else {
+    setupCatalogLoading();
+  }
 
   // Configuração dos dispositivos suportados
   const devices = [
